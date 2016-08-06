@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/AndreSokol/olymplan#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "ejs-locals": "^1.0.2",
+    "express": "^4.14.0",
+    "pg": "^6.0.3"
   }
 }
