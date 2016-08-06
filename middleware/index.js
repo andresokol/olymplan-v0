@@ -7,7 +7,7 @@ var configureServer = function (app) {
 
     // Setting default engine for response rendering
     app.set('view engine', 'ejs');
-    // 'views' is not views folder but templates, fuck my life
+    // 'views' is not views folder but templates, so fuck my life
     app.set('views', './templates/'); // so root folder for templates is set here
 
     router(app);
