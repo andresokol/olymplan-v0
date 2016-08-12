@@ -38,3 +38,5 @@ jspm_packages
 
 # Env file
 .env
+
+db_create_seq.sql
