@@ -1,0 +1,13 @@
+<%- include blocks/scripts %>
+
+<link href="/st/css/admin.css" rel="stylesheet" />
+
+<table>
+<% for(row in data.universities) { %>
+    <tr>
+        <% for(column in data.universities[row]) { %>
+            <td><%= data.universities[row][column] %></td>
+        <% } %>
+    </tr>
+<% } %>
+</table>

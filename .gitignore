@@ -40,3 +40,4 @@ jspm_packages
 .env
 
 db_create_seq.sql
+db_tables_config.json
