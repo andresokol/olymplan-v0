@@ -1,0 +1,23 @@
+
+body {
+    margin: 0px;
+    background: url("/st/img/test-bg.jpg");
+    background-size: cover;
+    color: white;
+}
+
+.btn__material {
+    background-color: #888;
+    border: 0px;
+    border-bottom: 5px solid #555;
+    padding: 10px;
+    color: white;
+}
+
+.btn__twitter {
+    background-color: white;
+    border: 1px solid #222;
+    color: #222;
+    padding: 10px;
+    border-radius: 5px;
+}

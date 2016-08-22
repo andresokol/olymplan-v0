@@ -60,17 +60,17 @@ exports.validate_admin_rights = (username) => {
     });
 }
 
-var get_table = (table) => {
+exports.get_table = (table, container_for_result = []) => {
     return new Promise((resolve, reject) => {
         var qstring = "SELECT * FROM " + table + ";";
         run_request(qstring).then((result) => {
-            resolve(result);
+            resolve(container_for_result.concat([result]));
         }).catch((e) => {reject(e)});
     });
 }
 
+/*
 // FIXME: copy-paste detected
-
 exports.get_universities_as_table = () => {
     return new Promise((resolve, reject) => {
         get_table(tables.university_list).then(resolve).catch(reject);
@@ -100,3 +100,4 @@ exports.get_olympiad_tours_as_table = () => {
         get_table(tables.tours_list).then(resolve).catch(reject);
     });
 }
+*/

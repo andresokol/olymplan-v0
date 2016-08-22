@@ -1,8 +1,22 @@
-<%- include blocks/scripts %>
+<!DOCTYPE html>
+<head>
+    <title></title>
+    <%- include blocks/scripts %>
+    <meta charset="utf-8">
+    <link href="public/css/main.css" />
+    <link href="https://fonts.googleapis.com/css?family=Scada" rel="stylesheet">
+</head>
+<body>
+    <%- include blocks/test-dark %>
 
-<h1><%= hostname %></h1>
-<p><%= data %></p>
+    <!-- ----------------------------- -->
 
-<input name="login" type="text" id="login_input" />
-<input name="password" type="password" id="password_input"/>
-<input type="submit" value="login!" id="sumbit_login_btn" onclick="submit_login();"/>
+    <h1><%= hostname %></h1>
+    <p><%= data %></p>
+
+    <input name="login" type="text" id="login_input" />
+    <input name="password" type="password" id="password_input"/>
+    <input type="submit" value="login!" id="sumbit_login_btn" onclick="submit_login();" class="btn__material"/>
+    <input type="submit" value="login!" id="sumbit_login_btn" onclick="submit_login();" class="btn__material btn__material__orange"/>
+    <input type="submit" value="login!" id="sumbit_login_btn" onclick="submit_login();" class="btn__twitter"/>
+</body>

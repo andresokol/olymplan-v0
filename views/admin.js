@@ -1,4 +1,5 @@
-var db = require('../middleware/db');
+var db = require('../middleware/db'),
+    tables = require('../db_tables_config.json');
 
 exports.validate_admin_rights = (req, res, next) => {
     if (req.session.is_admin == true) {
@@ -10,7 +11,7 @@ exports.validate_admin_rights = (req, res, next) => {
         return;
     }
     if (req.session.username == undefined) {
-        res.send("Login required!");
+        res.render('login_page');
         return;
     }
 
@@ -25,7 +26,7 @@ exports.validate_admin_rights = (req, res, next) => {
 }
 
 exports.main = (req, res) => {
-    db.get_universities_as_table().then((result) => {
-        res.render('admin', {data: {universities: result}});
-    }).catch(console.log);
+    db.get_table(tables.university_list)
+        .then((result) => {return db.get_table(tables.faculties_list, result);})
+        .then((result) => {res.render('admin', {data: JSON.stringify(result)});});
 }
