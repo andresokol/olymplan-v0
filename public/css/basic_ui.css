@@ -1,9 +1,9 @@
 
 body {
     margin: 0px;
-    background: url("/st/img/test-bg.jpg");
+    background: url("/st/img/bg-math-regata.jpg");
     background-size: cover;
-    color: white;
+    font-family: 'Scada';
 }
 
 .btn__material {
