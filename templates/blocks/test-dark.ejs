@@ -43,9 +43,9 @@
         background-color: transparent;
     }
 
-    .navbar * {
+    /*.navbar * {
         display: flex;
-    }
+    } */
 
     .-material-shadow {
         box-shadow: 0 0 3px 1px rgba(0,0,0,0.05), 1px 1px 3px 1px rgba(0,0,0,0.1);
@@ -57,6 +57,9 @@
 
     .trial {
         padding: 20px;
+        position: relative;
+        margin-top: 20%;
+        margin-bottom: 25%;
     }
 
     .advert_text b {
@@ -75,7 +78,94 @@
         margin-right: auto;
     }
 
+    .advert_text {
+        font-family: 'Scada';
+    }
+
+    .navbar {
+        height: 50px;
+        width: 100vw;
+        background-color: #000;
+        opacity: 0.75;
+        position: fixed;
+        text-align: center;
+        display: block;
+        margin-bottom: 10%;
+        z-index: 2;
+    }
+
+    .navbar .icon {
+        width: 8%;
+        height: inherit;
+        display: inline-flex;
+        float: left;
+        margin-left: 32%;
+    }
+
+    .navbar #buttons_nav {
+        display: inline-block;
+        position: relative;
+        text-align: center;
+        float: left;
+    }
+
+    .navbar li {
+        display: inline-table;
+        padding: 0 70px 0 0;
+    }
+
+    .navbar a {
+        text-decoration: none;
+        color: white;
+        text-transform: none;
+    }
+
+    .navbar a:hover {
+        text-decoration: underline;
+    }
+
+    .footer {
+      background-color: black;
+      display: block;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.75;
+      width: 100%;
+      height: 50px;
+    }
+
+    .footer ul {
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .footer li {
+      display: inline-table;
+      margin-top: 15px;
+      margin-right: 15px;
+      padding-right: 50px;
+    }
+
+    .footer a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .wrapper {
+      min-height: 100%;
+      margin: 0 auto -50px;
+    }
+
+    .push {
+      height: 36px;
+    }
 </style>
+<div class="wrapper">
 <div class="navbar">
     <div class="icon">
         <a href="/"><img src=""></a>
@@ -92,6 +182,7 @@
         </li>
     </ul>
 </div>
+<div style="opacity:0; height:50px;">this must be invisible</div>
 <div class="column">
     <div class="trial cnt__material">
         <div class="advert_text">
@@ -115,6 +206,8 @@
             </a>
         </div>
     </div>
+</div>
+<div class="push"></div>
 </div>
 <div class="footer">
     <ul>
