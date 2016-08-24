@@ -91,8 +91,8 @@
     .navbar {
         height: 50px;
         width: 100vw;
-        background-color: #000;
-        opacity: 0.75;
+        background-color: transparent;
+
         position: fixed;
         text-align: center;
         display: block;
@@ -103,8 +103,8 @@
         width: 8%;
         height: inherit;
         display: inline-flex;
-        float: left;
-        margin-left: 30%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .navbar #buttons_nav {
@@ -131,11 +131,11 @@
     }
 
     .footer {
-      background-color: black;
+      background-color: transparent;
       display: block;
       margin-left: auto;
       margin-right: auto;
-      opacity: 0.75;
+
       width: 100%;
       height: 50px;
       border-top: 1px white solid;
@@ -174,13 +174,29 @@
       height: 0px;
       display: block;
     }
+
+    .page {
+      width: 100%;
+      height: 700px;
+    }
+
+    .opening_text {
+      width: 80%;
+      height: 500px;
+      background-color: white;
+      margin-left: auto;
+      margin-right: auto;
+      color: black;
+      padding: 35px;
+      border-radius: 5px;
+    }
 </style>
 <div class="wrapper">
 <div class="navbar">
     <div class="icon">
         <a href="/"><img src=""></a>
     </div>
-    <ul id="buttons_nav">
+    <!-- <ul id="buttons_nav">
         <li>
             <a href="/olymp">Олимпиады</a>
         </li>
@@ -190,7 +206,7 @@
         <li>
             <a href="/calend">Календарь</a>
         </li>
-    </ul>
+    </ul> -->
 </div>
 <div style="opacity:0; height:50px;">this must be invisible</div>
 <div class="column">
@@ -217,18 +233,17 @@
         </div>
     </div>
 </div>
+<div class="page">
+    <div class="opening_text -material-shadow">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+</div>
 <div class="push"></div>
 </div>
 <div class="footer">
     <ul>
         <li>
             <a href="/about">О нас</a>
-        </li>
-        <li>
-            <a href="/FAQ">FAQ</a>
-        </li>
-        <li>
-            <a href="/contacts">Контакты</a>
         </li>
         <li>
             ©OLYMPLAN 2k16.
