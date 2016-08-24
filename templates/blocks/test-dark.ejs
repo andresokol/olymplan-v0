@@ -1,110 +1,134 @@
 <style>
-p, h1 {
-    margin: 0px 0px 10px 0px;
-}
+    h1,
+    p {
+        margin: 0 0 10px;
+    }
 
-body {
-    margin: 0px;
-    background: url("/st/img/bg-math-regata.jpg");
-    background-size: cover;
-    font-family: 'Scada';
-}
+    body {
+        margin: 0;
+        background: url("/st/img/bg-math-regata.jpg");
+        background-size: cover;
+        font-family: 'Scada';
+        color: white;
+    }
 
-.btn__material {
-    background-color: #fff;
-    border: 0px;
-    border-radius: 5px;
-    padding: 10px;
-    color: black;
-    font-size: 13pt;
-    text-align: center;
-    padding: 10px 15px;
-    margin-right: 10px;
-}
+    .btn__material {
+        background-color: #fff;
+        border: 0;
+        border-radius: 5px;
+        padding: 10px;
+        color: black;
+        font-size: 13pt;
+        text-align: center;
+        padding: 10px 15px;
+        margin-right: 10px;
+    }
 
-.btn__twitter {
-    background-color: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-}
+    .btn__twitter {
+        background-color: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+    }
 
-.btn__material__orange {
-    background-color: #ff5a00;
-    color: white;
-}
+    .btn__material__orange {
+        background-color: #ff5a00;
+        color: white;
+    }
 
-.cnt__material {
-    border-radius: 5px;
-    box-shadow: 0 0 3px 1px rgba(0,0,0,0.05), 1px 1px 3px 1px rgba(0,0,0,0.1);
-    background-color: white;
-}
+    .cnt__material {
+        /*border-radius: 5px;
+        box-shadow: 0 0 3px 1px rgba(0,0,0,0.05), 1px 1px 3px 1px rgba(0,0,0,0.1);*/
+        background-color: transparent;
+    }
 
-.navbar * {
-    display: flex;
-}
+    .navbar * {
+        display: flex;
+    }
 
-.-material-shadow {
-    box-shadow: 0 0 3px 1px rgba(0,0,0,0.05), 1px 1px 3px 1px rgba(0,0,0,0.1);
-}
+    .-material-shadow {
+        box-shadow: 0 0 3px 1px rgba(0,0,0,0.05), 1px 1px 3px 1px rgba(0,0,0,0.1);
+    }
 
     .column {
-        margin: 0% 30% 0% 30%;
+        margin: 0 30%;
     }
+
     .trial {
         padding: 20px;
     }
+
     .advert_text b {
-      font-size: 24px;
+        font-size: 24px;
     }
+
     .trial a {
         text-decoration: none;
         color: black;
     }
+
     .btn-wrap {
-      display: flex;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
+        display: flex;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 
 </style>
 <div class="navbar">
-        <div class="icon">
-                <a href="/"><img src=""></a>
-        </div>
-        <ul id="buttons_nav">
-            <li><a href="/olymp">Олимпиады</a></li>
-            <li><a href="/univ">Вузы</a></li>
-            <li><a href="/calend">Календарь</a></li>
-        </ul>
+    <div class="icon">
+        <a href="/"><img src=""></a>
+    </div>
+    <ul id="buttons_nav">
+        <li>
+            <a href="/olymp">Олимпиады</a>
+        </li>
+        <li>
+            <a href="/univ">Вузы</a>
+        </li>
+        <li>
+            <a href="/calend">Календарь</a>
+        </li>
+    </ul>
 </div>
-    <div class="column">
-        <div class="trial cnt__material">
-            <div class="advert_text">
-                <h1><b>Олимпиады — штука сложная.</b></h1>
-                <p>Нужно не только хорошо их написать, но еще и найти те, что больше всего тебе подойдут. Более того, на олимпиаду нужно еще и успеть вовремя зарегистрироваться и прийти в нужное место с нужными документами. Некоторые составляют себе расписание, пришпиливают его к стенке и вскоре о нем забывают. Наш инструмент использует полную базу данных по олимпиадам и собственный опыт создателей и предоставляет возможность быстро составить план и получать по нему уведомления. </p>
-            </div>
-                <div class="btn-wrap">
-                  <a href="/register">
-                    <div class="btn__material btn__material__orange -material-shadow" class="register">
-                            Зарегистрироваться
-                    </div>
-                  </a>
-                  <a href="/timetable_trial">
-                    <div class="btn__material" class="timetable">
-                            Составить свое расписание!
-                    </div>
-                  </a>
-            </div>
+<div class="column">
+    <div class="trial cnt__material">
+        <div class="advert_text">
+            <h1>
+                <b>Олимпиады — штука сложная.</b>
+            </h1>
+            <p>Нужно не только хорошо их написать, но еще и найти те, что больше всего тебе подойдут. Более того, на олимпиаду нужно еще и успеть вовремя зарегистрироваться и прийти в нужное место с нужными документами. Некоторые составляют себе расписание,
+                пришпиливают его к стенке и вскоре о нем забывают. Наш инструмент использует полную базу данных по олимпиадам и собственный опыт создателей и предоставляет возможность быстро составить план и получать по нему уведомления.
+            </p>
+        </div>
+        <div class="btn-wrap">
+            <a href="/register">
+                <div class="btn__material btn__material__orange -material-shadow" class="register">
+                    Зарегистрироваться
+                </div>
+            </a>
+            <a href="/timetable_trial">
+                <div class="btn__material" class="timetable">
+                    Составить свое расписание!
+                </div>
+            </a>
         </div>
     </div>
+</div>
 <div class="footer">
     <ul>
-        <li><a href="/about">О нас</a></li>
-        <li><a href="/FAQ">FAQ</a></li>
-        <li><a href="/contacts">Контакты</a></li>
-        <li><p>©OLYMPLAN 2k16.</p></li>
+        <li>
+            <a href="/about">О нас</a>
+        </li>
+        <li>
+            <a href="/FAQ">FAQ</a>
+        </li>
+        <li>
+            <a href="/contacts">Контакты</a>
+        </li>
+        <li>
+            <p>©OLYMPLAN 2k16.</p>
+        </li>
     </ul>
 </div>
