@@ -14,7 +14,11 @@ module.exports = function(app) {
     app.get("/admin/", admin_views.main);
 
     // debug features
-    app.get('/test/login', (req, res) => {
+    app.get('/test', (req, res) => {
         res.render('test.ejs');
+    });
+
+    app.get('/test/api', (req, res) => {
+        res.send('{"Math": ["Math1", "Math2"], "PE": ["PE1", "PE2"]}');
     });
 }
