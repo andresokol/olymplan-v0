@@ -9,9 +9,14 @@ var Olympiad = React.createClass({
     },
 
     render: function() {
-        let checked = this.state.checked ? ' - checked' : '';
+        let checked = this.state.checked ? 'x' : '';
 
-        var returnValue = <p onClick={this.toggleCheck}>{this.props.olympiadName}{checked}</p>;
+        var returnValue = (
+            <div class="olymp-cnt">
+                <p class="olymp-name" onClick={this.toggleCheck}>{this.props.olympiadName}</p>
+                <p class="olymp-counter">{checked}</p>
+            </div>
+        );
 
         return returnValue;
     }
@@ -46,7 +51,7 @@ var Subject = React.createClass({
     },
 
     render: function() {
-        var counterString = (this.state.checkedCount == 0) ? "" : " - " + this.state.checkedCount;
+        var counterString = (this.state.checkedCount == 0) ? "" : "" + this.state.checkedCount;
         var olympList = [];
         for(var index in this.props.olympList) {
             olympList.push(
@@ -59,9 +64,12 @@ var Subject = React.createClass({
         var togglingStyle = this.state.toggled ? {} : {display: "none"};
 
         return (
-            <div>
-                <h1 onClick={this.handleClick}>{this.props.subjectName}{counterString}</h1>
-                <div style={togglingStyle}>{olympList}</div>
+            <div class="subject-cnt">
+                <div onClick={this.handleClick} class="subject-cnt-header">
+                    <h1>{this.props.subjectName}</h1>
+                    <p>{counterString}</p>
+                </div>
+                <div class="olymp-list-cnt" style={togglingStyle}>{olympList}</div>
             </div>
         );
     }
@@ -112,9 +120,9 @@ var TrialContainer = React.createClass({
         };
 
         var returnValue = (
-            <div>
-                <div>{subjectsArray}</div>
-                <button onClick={this.submit}>Push</button>
+            <div class="trial-cnt">
+                <div class="trial-subj-list">{subjectsArray}</div>
+                <button class="trial-submit-btn" onClick={this.submit}>Push</button>
             </div>
         );
         return returnValue;
