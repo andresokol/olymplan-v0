@@ -12,9 +12,9 @@ var Olympiad = React.createClass({
         let checked = this.state.checked ? 'x' : '';
 
         var returnValue = (
-            <div class="olymp-cnt">
-                <p class="olymp-name" onClick={this.toggleCheck}>{this.props.olympiadName}</p>
-                <p class="olymp-counter">{checked}</p>
+            <div className="olymp-cnt">
+                <p className="olymp-name" onClick={this.toggleCheck}>{this.props.olympiadName}</p>
+                <p className="olymp-counter">{checked}</p>
             </div>
         );
 
@@ -64,12 +64,12 @@ var Subject = React.createClass({
         var togglingStyle = this.state.toggled ? {} : {display: "none"};
 
         return (
-            <div class="subject-cnt">
-                <div onClick={this.handleClick} class="subject-cnt-header">
+            <div className="subject-cnt">
+                <div onClick={this.handleClick} className="subject-cnt-header">
                     <h1>{this.props.subjectName}</h1>
                     <p>{counterString}</p>
                 </div>
-                <div class="olymp-list-cnt" style={togglingStyle}>{olympList}</div>
+                <div className="olymp-list-cnt" style={togglingStyle}>{olympList}</div>
             </div>
         );
     }
@@ -120,9 +120,9 @@ var TrialContainer = React.createClass({
         };
 
         var returnValue = (
-            <div class="trial-cnt">
-                <div class="trial-subj-list">{subjectsArray}</div>
-                <button class="trial-submit-btn" onClick={this.submit}>Push</button>
+            <div className="trial-cnt">
+                <div className="trial-subj-list">{subjectsArray}</div>
+                <button className="trial-submit-btn" onClick={this.submit}>Push</button>
             </div>
         );
         return returnValue;
