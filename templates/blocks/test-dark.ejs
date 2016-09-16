@@ -99,12 +99,13 @@
         z-index: 2;
     }
 
-    .navbar .icon {
+    .icon {
         width: 8%;
-        height: inherit;
-        display: inline-flex;
+        height: 50px;
+        display: inline-block;
         margin-left: auto;
         margin-right: auto;
+        fill: white;
     }
 
     .navbar #buttons_nav {
@@ -131,7 +132,8 @@
     }
 
     .footer {
-      background-color: transparent;
+      /*background-color: transparent;*/
+      background-color: white;
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -153,11 +155,13 @@
       margin-right: 15px;
       padding-right: 50px;
       font-size: 17px;
+      color: black;
     }
 
     .footer a {
       text-decoration: none;
-      color: white;
+      /*color: white; */
+      color: black;
     }
 
     .footer a:hover {
@@ -181,24 +185,24 @@
     }
 
     .opening_text {
-      width: 80%;
-      height: 500px;
+      width: 100%;
+      height: 625px;
       background-color: white;
       margin-left: auto;
       margin-right: auto;
       color: black;
-      padding: 35px;
-      border-radius: 5px;
+      padding-top: 35px;
     }
 
-    .icon {
-      fill: white;
+    .opening_text p {
+      margin-left: 35px;
+      margin-right: 35px;
     }
 </style>
 <div class="wrapper">
 <div class="navbar">
     <div class="icon">
-        <a href="/"><img src="/public/img/logo_v0-0-1.png"></a>
+        <!-- <a href="/"><img src="/st/img/logo_v0-0-1.svg"></a> -->
     </div>
     <!-- <ul id="buttons_nav">
         <li>
