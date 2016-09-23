@@ -6,6 +6,9 @@ module.exports = function(app) {
     app.get("/", main_views.main_page);
     app.get('/university/:id', main_views.university);
 
+    app.get('/events/', main_views.get_event_list);
+    app.get('/events/:id', main_views.get_event);
+
     // API + AJAX
     app.post("/api/login", api_views.validate_login);
 
@@ -20,5 +23,9 @@ module.exports = function(app) {
 
     app.get('/test/api', (req, res) => {
         res.send('{"Math": ["Math1", "Math2"], "PE": ["PE1", "PE2"]}');
+    });
+
+    app.get("*", (req, res) => {
+        res.send("404, ouch!");
     });
 }

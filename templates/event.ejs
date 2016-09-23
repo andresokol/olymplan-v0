@@ -1,0 +1,11 @@
+<h1><%= event_name %></h1>
+<% if (lvl != 0) { %>
+    <h4><%= lvl %></h4>
+<% } else { %>
+    <h4>Нет в Перечне</h4>
+<% } %>
+
+<a href="<%= event_url %>">Сайт мероприятия</a>
+<h4>Классы: <%= grade_range %></h4>
+
+<p><%= description %></p>

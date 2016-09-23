@@ -24,14 +24,22 @@ var run_request = function(qstring) {
 };
 
 exports.get_by_id = function(table, id, callback) {
-    if(id === NaN) {
-        callback(undefined);
-        console.log('(db.js:29) id is not a number');
-    }
-    else {
-        var qstring = "SELECT * FROM " + table + " WHERE id = '" + id + "';";
-        run_request(qstring, callback);
-    }
+    var qstring = "SELECT * FROM " + table + " WHERE id = '" + id + "';";
+    run_request(qstring).then((result) => {
+                callback(result[0]);
+            }, (err) => {
+                callback(null);
+            });
+};
+
+exports.get_column_as_list = (table, column_name, callback) => {
+    var qstring = "SELECT id, " + column_name + " FROM " + table + ";"
+    run_request(qstring).then(
+        (result) => {
+            callback(result);
+        }, (err) => {
+            callback(undefined);
+        });
 };
 
 exports.validate_login = function(username, password, callback) {

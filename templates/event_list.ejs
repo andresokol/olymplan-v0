@@ -1,0 +1,6 @@
+<h1>Все олимпиады</h1>
+<div>
+<% for (var i in event_list) { %>
+    <a href="/events/<%= event_list[i].id %>" style="display:block;"><%= event_list[i].name %></a>
+<% } %>
+</div>
