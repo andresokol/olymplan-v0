@@ -1,23 +1,72 @@
 <!DOCTYPE html>
 <head>
     <title></title>
-    <link href="https://fonts.googleapis.com/css?family=Scada" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
-    <meta charset="utf-8">
-    <%- include blocks/scripts %>
+    <%- include blocks/head %>
 </head>
 <body>
-    <%- include blocks/test-dark %>
+    <div class="wrapper">
+        <div class="navbar">
+            <div class="icon">
+                <!-- <a href="/"><img src="/st/img/logo_v0-0-1.svg"></a> -->
+            </div>
+            <!-- <ul id="buttons_nav">
+        <li>
+            <a href="/olymp">Олимпиады</a>
+        </li>
+        <li>
+            <a href="/univ">Вузы</a>
+        </li>
+        <li>
+            <a href="/calend">Календарь</a>
+        </li>
+    </ul> -->
+        </div>
+        <div style="opacity:0; height:50px;">this must be invisible</div>
+        <div class="column">
+            <div class="trial cnt__material">
+                <div class="advert_text">
+                    <h1>
+                        <b>Олимпиады — штука сложная.</b>
+                    </h1>
+                    <p>Нужно не только хорошо их написать, но еще и найти те, что больше всего тебе подойдут. Более того, на олимпиаду нужно еще и успеть вовремя зарегистрироваться и прийти в нужное место с нужными документами. Некоторые составляют себе расписание,
+                        пришпиливают его к стенке и вскоре о нем забывают. Наш инструмент использует полную базу данных по олимпиадам и собственный опыт создателей и предоставляет возможность быстро составить план и получать по нему уведомления.
+                    </p>
+                </div>
+                <div class="btn-wrap">
+                    <a href="/register">
+                        <div class="btn__material btn__material__orange -material-shadow" class="register">
+                            Зарегистрироваться
+                        </div>
+                    </a>
+                    <a href="/timetable_trial">
+                        <div class="btn__material btn__material__transparent" class="timetable">
+                            Составить свое расписание!
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="push"></div>
+        <div class="page">
+            <div class="opening_text -material-shadow">
+                <img src="http://placehold.it/350x350" class="leftimg" align="middle">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <img src="http://placehold.it/350x350" class="rightimg" align="middle">
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.</p>
+                <img src="http://placehold.it/350x350" class="leftimg" align="middle">
+                <p>In reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
 
-    <!-- ----------------------------- -->
-<!--
-    <h1><%= hostname %></h1>
-    <p><%= data %></p>
-
-    <input name="login" type="text" id="login_input" />
-    <input name="password" type="password" id="password_input"/>
-    <input type="submit" value="login!" id="sumbit_login_btn" onclick="submit_login();" class="btn__material"/>
-    <input type="submit" value="login!" id="sumbit_login_btn" onclick="submit_login();" class="btn__material btn__material__orange"/>
-    <input type="submit" value="login!" id="sumbit_login_btn" onclick="submit_login();" class="btn__twitter"/>
-  -->
+    </div>
+    <div class="footer">
+        <ul>
+            <li>
+                <a href="/about">О нас</a>
+            </li>
+            <li>
+                ©OLYMPLAN 2k16.
+            </li>
+        </ul>
+    </div>
 </body>
