@@ -3,6 +3,7 @@ body {
     margin: 0px;
     background-size: cover;
     font-family: 'Scada', sans-serif;
+    position: relative;
 }
 
 .btn__material {
@@ -134,5 +135,10 @@ body {
 .wrapper {
   min-height: 100%;
   margin: 0 auto -52px;
+  display: block;
+}
+
+.push {
+  height: 15px;
   display: block;
 }
