@@ -1,27 +1,3 @@
 .navbar a {
-  color: black;
-}
-
-.header {
-  margin: 35px 25px 25px 50px;
-}
-
-.infobox {
-  float: right;
-  display: inline-block;
-  margin: 25px 0 25px 25px;
-  padding: 10px;
-  width: 250px;
-}
-
-.description {
-  float: left;
-  display: inline-block;
-  margin: 25px 0 25px 50px;
-  width: 50%;
-}
-
-.footer {
-  bottom: 0;
-  position: fixed;
+    color: black;
 }
