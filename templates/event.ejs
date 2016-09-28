@@ -32,19 +32,19 @@
 <div class="header">
   <h1><%= event_name %></h1>
 </div>
-<div class="lvl">
-  <% if (lvl != 0) { %>
-    <h4><%= lvl %></h4>
-  <% } else { %>
-    <h4>Нет в Перечне</h4>
-  <% } %>
-</div>
-<div class="infobox">
-  <a href="<%= event_url %>">Сайт мероприятия</a>
-  <h4>Классы: <%= grade_range %></h4>
-</div>
-<div class="description">
-  <p><%= description %></p>
+<div class="event_content">
+  <div class="infobox">
+    <% if (lvl != 0) { %>
+      <h4><%= lvl %></h4>
+      <% } else { %>
+        <h4>Нет в Перечне</h4>
+      <% } %>
+      <a href="<%= event_url %>">Сайт мероприятия</a>
+      <h4>Классы: <%= grade_range %></h4>
+  </div>
+  <div class="description">
+    <p><%= description %></p>
+  </div>
 </div>
 </div>
 <div class="footer">
