@@ -1,11 +1,59 @@
-<h1><%= event_name %></h1>
-<% if (lvl != 0) { %>
+<!DOCTYPE html>
+<head>
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Scada" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <meta charset="utf-8">
+    <link href="/st/css/event.css" rel="stylesheet" type="text/css" />
+    <link href="/st/css/basic_ui.css" rel="stylesheet" type="text/css" />
+    <script src="/st/js/jquery-3.1.0.js"></script>
+    <script src="/st/js/check_login.js"></script>
+</head>
+<div class="wrapper">
+<div class="navbar">
+  <div class="nav_content">
+    <div class="icon">
+           <!-- <a href="/"><img src="/st/img/logo_v0-0-1.svg"></a> -->
+    </div>
+    <ul id="buttons_nav">
+      <li>
+        <a href="/olymp">Олимпиады</a>
+      </li>
+      <li>
+        <a href="/univ">Вузы</a>
+      </li>
+      <li>
+        <a href="/calend">Календарь</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div style="opacity:0; height:50px;">this must be invisible</div>
+<div class="header">
+  <h1><%= event_name %></h1>
+</div>
+<div class="lvl">
+  <% if (lvl != 0) { %>
     <h4><%= lvl %></h4>
-<% } else { %>
+  <% } else { %>
     <h4>Нет в Перечне</h4>
-<% } %>
-
-<a href="<%= event_url %>">Сайт мероприятия</a>
-<h4>Классы: <%= grade_range %></h4>
-
-<p><%= description %></p>
+  <% } %>
+</div>
+<div class="infobox">
+  <a href="<%= event_url %>">Сайт мероприятия</a>
+  <h4>Классы: <%= grade_range %></h4>
+</div>
+<div class="description">
+  <p><%= description %></p>
+</div>
+</div>
+<div class="footer">
+    <ul>
+        <li>
+            <a href="/about">О нас</a>
+        </li>
+        <li>
+            ©OLYMPLAN 2k16.
+        </li>
+    </ul>
+</div>

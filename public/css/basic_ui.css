@@ -1,9 +1,8 @@
 
 body {
     margin: 0px;
-    background: url("/st/img/bg-math-regata.jpg");
     background-size: cover;
-    font-family: 'Scada';
+    font-family: 'Scada', sans-serif;
 }
 
 .btn__material {
@@ -15,9 +14,125 @@ body {
 }
 
 .btn__twitter {
-    background-color: white;
-    border: 1px solid #222;
-    color: #222;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
+}
+
+.btn__material__orange {
+    background-color: #FF1509;
+    color: white;
+}
+
+.btn__material__transparent {
+    border: white 1px solid;
+}
+
+.cnt__material {
+    /*border-radius: 5px;
+    box-shadow: 0 0 3px 1px rgba(0,0,0,0.05), 1px 1px 3px 1px rgba(0,0,0,0.1);*/
+    background-color: transparent;
+}
+
+/*.navbar * {
+    display: flex;
+} */
+
+.-material-shadow {
+    box-shadow: 0 0 3px 1px rgba(0,0,0,0.05), 1px 1px 3px 1px rgba(0,0,0,0.1);
+}
+
+.btn-wrap {
+    display: flex;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar {
+    max-height: 50px;
+    width: 100%;
+    background-color: transparent;
+    position: fixed;
+    display: inline-block;
+    z-index: 2;
+}
+
+.nav_content {
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 50px;
+}
+
+.icon {
+    display: inline-block;
+    width: 8%;
+    height: inherit;
+}
+
+.navbar #buttons_nav {
+    display: inline-block;
+    position: relative;
+    top: -40%;
+    margin-left: 30%;
+    margin-right: auto;
+}
+
+.navbar li {
+    display: inline-table;
+    padding: 0 70px 0 0;
+    font-size: 17px;
+}
+
+.navbar a {
+    text-decoration: none;
+    text-transform: none;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+  /*background-color: transparent;*/
+  background-color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 50px;
+  border-top: 1px white solid;
+  margin-bottom: 0;
+}
+
+.footer ul {
+  text-align: center;
+  max-height: 50px;
+  margin: 15px auto 0 auto;
+}
+
+.footer li {
+  display: inline-table;
+  margin-right: 15px;
+  padding-right: 50px;
+  font-size: 17px;
+  color: black;
+}
+
+.footer a {
+  text-decoration: none;
+  /*color: white; */
+  color: black;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.wrapper {
+  min-height: 100%;
+  margin: 0 auto -52px;
+  display: block;
 }

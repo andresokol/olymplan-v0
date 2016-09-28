@@ -91,7 +91,6 @@ body {
     height: 50px;
     width: 100vw;
     background-color: transparent;
-
     position: fixed;
     text-align: center;
     display: block;
@@ -102,8 +101,7 @@ body {
     width: 8%;
     height: 50px;
     display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 30%;
     fill: white;
 }
 
