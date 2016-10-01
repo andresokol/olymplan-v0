@@ -3,8 +3,8 @@ var main_views = require("../views/main"),
     api_views = require("../views/api.js");
 
 module.exports = function(app) {
-    app.get("/", main_views.main_page);
-    app.get('/university/:id', main_views.university);
+    app.get("/", main_views.landing_page);
+    //app.get('/university/:id', main_views.university);
 
     app.get('/events/', main_views.get_event_list);
     app.get('/events/:id', main_views.get_event);

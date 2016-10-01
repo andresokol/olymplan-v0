@@ -1,8 +1,8 @@
 var db = require('../middleware/db'),
     utils = require('../middleware/utils');
 
-exports.main_page = function (req, res) {
-    res.render('main.ejs', {
+exports.landing_page = function (req, res) {
+    res.render('landing', {
         hostname: req.hostname,
         data: JSON.stringify(req.route)
     });
