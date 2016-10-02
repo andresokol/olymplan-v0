@@ -77,6 +77,27 @@ exports.get_table = (table, container_for_result = []) => {
     });
 }
 
+exports.check_username_existence = (username) => {
+    return new Promise((resolve, reject) => {
+        var qstring = "SELECT * FROM " + tables.user_list +
+                            " WHERE username = '"  + username + "';";
+
+        console.log(qstring);
+
+        run_request(qstring).then((result) => {
+            //console.log(result);
+            //console.log(result[0]);
+            if(result[0] === undefined) reject();
+            else
+                                  resolve();
+        }, (result) => {
+            console.log(result);
+            reject();
+            // FIXME: bad behaviour when DB is not responding
+        });
+    });
+};
+
 /*
 // FIXME: copy-paste detected
 exports.get_universities_as_table = () => {

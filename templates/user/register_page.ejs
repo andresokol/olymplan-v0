@@ -1,0 +1,16 @@
+<%- include ../blocks/head %>
+
+<script src="/st/js/register.js"></script>
+
+<style>
+    input {
+        display: block;
+    }
+</style>
+
+<h1>Register</h1>
+
+<input name="login" type="text" id="login_input" placeholder="Логин"/>
+<input name="password" type="password" id="password_input_1" placeholder="Пароль"/>
+<input name="password" type="password" id="password_input_2" placeholder="Пароль еще раз"/>
+<input type="submit" value="login!" id="sumbit_login_btn" onclick="submitRegData();"/>

@@ -1,5 +1,17 @@
-var check_forbidden_symbols = (string) => {
+var check_forbidden_symbols = function (string) {
     return (string.search(/[^A-Za-z0-9_\-\?\!]/i) == -1);
+}
+
+var extractGetParams = function(param_name) {
+    var query = window.location.search.substring(1).split("&");
+    //console.log(query);
+    for(var index in query) {
+        var pair = query[index].split("=");
+        //console.log(pair);
+        if (pair[0] == param_name) return pair[1];
+        //console.log(pair);
+    }
+    return undefined;
 }
 
 var submit_login = function (event) {
@@ -32,8 +44,16 @@ var submit_login = function (event) {
             answerParsed = JSON.parse(answer);
             if(!answerParsed.connected) alert("No connection to DB!");
             else {
-                if (answerParsed.auth_success) document.location.href = '/admin';
-                else                           alert("Wrong login/password!");
+                if (answerParsed.auth_success) {
+                    console.log("success");
+                    redirect_href = extractGetParams("r");
+                    if (redirect_href === undefined) redirect_href = '/user';
+                    document.location.href = redirect_href;
+                    //alert(redirect_href);
+                }
+                else {
+                    alert("Wrong login/password!");
+                }
             }
         },
         error: (e) => {

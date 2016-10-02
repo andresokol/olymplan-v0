@@ -20,4 +20,13 @@ exports.validate_login = function (req, res) {
 
         res.send(auth_result);
     });
+};
+
+exports.check_username_availability = (req, res) => {
+    var username = utils.sanitizeQuotes(req.params.username);
+    db.check_username_existence(username).then(() => {
+        res.send(false);
+    }, () => {
+        res.send(true);
+    });
 }
