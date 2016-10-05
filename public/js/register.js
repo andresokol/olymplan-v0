@@ -8,6 +8,10 @@ var matchPasswords = function(e) {
     return $('#password_input_1').val() === $('#password_input_2').val();
 };
 
+var validateEmail = function(s) {
+    return s.match(/.+@.+\..+/i);
+}
+
 var checkPasswordAvailability = function (login_string, resolve, reject) {
     $.ajax({
         url: '/api/check_username/' + login_string,
@@ -93,5 +97,10 @@ $().ready(function () {
     $('#password_input_2').focusout(function() {
         if(matchPasswords()) alert('Passwords match!');
         else                 alert('Check your passwords once again!');
+    });
+
+    $('#email_input').focusout(function () {
+        if (validateEmail($(this).val())) alert("Good");
+        else alert("Bad");
     });
 });

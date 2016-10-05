@@ -87,8 +87,8 @@ exports.check_username_existence = (username) => {
         run_request(qstring).then((result) => {
             //console.log(result);
             //console.log(result[0]);
-            if(result[0] === undefined) reject();
-            else
+            //if(result.length() === 0) reject();
+            //else
                                   resolve();
         }, (result) => {
             console.log(result);
