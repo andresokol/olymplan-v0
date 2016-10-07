@@ -1,6 +1,47 @@
-<h1>Все олимпиады</h1>
-<div>
+<!DOCTYPE html>
+<head>
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Scada" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <meta charset="utf-8">
+    <link href="/st/css/event_list.css" rel="stylesheet" type="text/css" />
+    <link href="/st/css/basic_ui.css" rel="stylesheet" type="text/css" />
+    <script src="/st/js/jquery-3.1.0.js"></script>
+    <script src="/st/js/check_login.js"></script>
+</head>
+<div class="wrapper">
+<div class="navbar">
+  <div class="nav_content">
+    <div class="icon">
+           <!-- <a href="/"><img src="/st/img/logo_v0-0-1.svg"></a> -->
+    </div>
+    <ul id="buttons_nav">
+      <li>
+        <a href="/olymp">Олимпиады</a>
+      </li>
+      <li>
+        <a href="/calend">Календарь</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div style="opacity:0; height:50px;">this must be invisible</div>
+<div class="header">
+  <h1>Все олимпиады</h1>
+</div>
+<div class="list">
 <% for (var i in event_list) { %>
     <a href="/events/<%= event_list[i].id %>" style="display:block;"><%= event_list[i].name %></a>
 <% } %>
+</div>
+</div>
+<div class="footer">
+    <ul>
+        <li>
+            <a href="/about">О нас</a>
+        </li>
+        <li>
+            ©OLYMPLAN 2k16.
+        </li>
+    </ul>
 </div>

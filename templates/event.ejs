@@ -20,9 +20,6 @@
         <a href="/olymp">Олимпиады</a>
       </li>
       <li>
-        <a href="/univ">Вузы</a>
-      </li>
-      <li>
         <a href="/calend">Календарь</a>
       </li>
     </ul>
@@ -33,6 +30,9 @@
   <h1><%= event_name %></h1>
 </div>
 <div class="event_content">
+  <div class="logo">
+    <img src="http://placehold.it/200x200">
+  </div>
   <div class="infobox">
     <% if (lvl != 0) { %>
       <h4><%= lvl %></h4>
@@ -45,6 +45,9 @@
   <div class="description">
     <p><%= description %></p>
   </div>
+</div>
+<div class="get_back -material-shadow btn__twitter">
+  <a href="/events">Вернуться к Списку</a>
 </div>
 </div>
 <div class="footer">

@@ -6,22 +6,54 @@
   margin: 35px 25px 25px 50px;
 }
 
+.logo {
+  float:left;
+  display: inline-block;
+  margin: 25px 0 25px 50px;
+}
 .infobox {
   float: right;
   display: inline-block;
-  margin: 25px 0 25px 25px;
+  margin: 25px 100px 0px 25px;
   padding: 10px;
-  width: 250px;
+  width: 150px;
+  background-color: #fbf460;
+}
+
+.infobox a {
+  color: black;
+  font-weight: bold;
+}
+
+.infobox a:hover {
+  text-decoration: none;
 }
 
 .description {
   float: left;
   display: inline-block;
-  margin: 25px 0 25px 50px;
-  width: 50%;
+  margin: 25px 0 70px 25px;
+  width: 45%;
+  font-size: 19px;
+}
+
+.get_back {
+  float: right;
+  margin: 25px 110px 25px 25px;
+  display: block;
+}
+
+.get_back a {
+  color: black;
+  text-decoration: none;
 }
 
 .footer {
   bottom: 0;
   position: fixed;
+}
+
+.wrapper {
+  height: 100%;
+  background: linear-gradient(to top, #FF1509, #8E09FF);
 }
