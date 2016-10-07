@@ -1,12 +1,37 @@
+/**
+ * Screens single quotes for postgres
+ *
+ * @param {string} str
+ * @return {string} sanitized string
+ */
 exports.sanitizeQuotes = function (str) {
     return str.replace(/'/g, "''");
 };
 
-exports.check_forbidden_symbols = (string) => {
+/**
+ * @param {string} string
+ * @param {bool} true if no forbidden symbols
+ */
+exports.checkForbiddenSymbols = (string) => {
     return (string.search(/[^A-Za-z0-9_\-\?\!]/i) == -1);
 }
 
-exports.list_to_string_range = (list) => {
+/**
+ * Validate email string as [somesymbols]@[somesymbols].[somesymbols]
+ * Don't need to check more because of validation letter
+ *
+ * @param {string} email
+ * @return {bool} true if validate_login
+ */
+exports.checkIfEmailValid = (str) => {
+    return str.match(/.+@.+\..+/i);
+}
+
+/**
+ * @param {object} list as array
+ * @return {string}
+ */
+exports.listToStringRange = (list) => {
     var response = '',
         prev_item = Infinity,
         cnt = 0;

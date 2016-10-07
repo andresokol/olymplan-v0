@@ -5,7 +5,7 @@ var Pool = require('pg').Pool,
         database: process.env.DB_NAME,
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
-        ssl: process.env.DB_USE_SSL,
+        ssl: JSON.parse(process.env.DB_USE_SSL),
         idleTimeoutMillis: 1000 //close idle clients after 1 second
     });
     tables = require("../db_tables_config.json");
@@ -13,11 +13,11 @@ var Pool = require('pg').Pool,
 var run_request = function(qstring) {
     return new Promise((resolve, reject) => {
         pool.query(qstring, function (err, result) {
+            //console.log('db.js:20', result);
             if(err) {
                 console.log(err);
                 reject(err);
             }
-
             resolve(result.rows);
         });
     });
@@ -85,15 +85,46 @@ exports.check_username_existence = (username) => {
         console.log(qstring);
 
         run_request(qstring).then((result) => {
-            //console.log(result);
-            //console.log(result[0]);
-            //if(result.length() === 0) reject();
-            //else
-                                  resolve();
-        }, (result) => {
+            //console.log('db.js:88', result.length);
+            if(result.length === 0) reject();
+            else resolve();
+        }).catch((result) => {
             console.log(result);
             reject();
             // FIXME: bad behaviour when DB is not responding
+        });
+    });
+};
+
+/**
+ * Adds values from object to table
+ *
+ * @param {string} table name
+ * @param {object} values
+ * @returns {Promise}
+ */
+exports.addRowToTable = (table, values) => {
+    return new Promise((resolve, reject) => {
+        var qstring = "INSERT INTO " + table + " values(";
+
+        for(var index in values) {
+            if (typeof(values[index]) === typeof("sample string")) qstring += "'";
+            qstring += values[index].toString();
+            if (typeof(values[index]) === typeof("sample string")) qstring += "'";
+            qstring += ",";
+        }
+
+        qstring = qstring.substr(0, qstring.length - 1);
+        qstring += ");";
+
+        console.log("[db.js:120]", qstring);
+
+        run_request(qstring).then((result) => {
+            console.log("resolved");
+            resolve();
+        }).catch((err) => {
+            console.log(err);
+            reject(err);
         });
     });
 };

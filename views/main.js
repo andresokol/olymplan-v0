@@ -35,7 +35,7 @@ exports.get_event = (req, res, next) => {
                 event_name: result.name,
                 lvl: result.lvl,
                 event_url: result.site_url,
-                grade_range: utils.list_to_string_range(result.grade_range),
+                grade_range: utils.listToStringRange(result.grade_range),
                 description: result.description
             });
         }

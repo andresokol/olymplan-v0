@@ -18,6 +18,7 @@ var checkPasswordAvailability = function (login_string, resolve, reject) {
         method: 'GET',
         dataType: 'text',
         success: function (answer) {
+            console.log(answer);
             var username_is_free = JSON.parse(answer);
             USERNAME_IS_FREE = username_is_free;
             if (username_is_free) resolve();
@@ -29,55 +30,36 @@ var checkPasswordAvailability = function (login_string, resolve, reject) {
 var submitRegData = function (event) {
     var login = $('#login_input').val(),
         password = $('#password_input_1').val(),
+        email = $('#email_input').val(),
         can_submit = true;
 
-    /*if (!check_forbidden_symbols(login)) {
-        $('#login_input').css('background-color', "#f00");
-        can_submit = false;
-    } else {
-        $('#login_input').css('background-color', "#fff");
-    }
-
-    if (!check_forbidden_symbols(password)) {
-        $('#password_input').css('background-color', "#f00");
-        can_submit = false;
-    } else {
-        $('#password_input').css('background-color', "#fff");
-    }*/
-
-    if (!USERNAME_IS_FREE || !matchPasswords() || !checkIfNoForbiddenSymbols(login)) {
+    if (!USERNAME_IS_FREE || !matchPasswords() || !checkIfNoForbiddenSymbols(login) || !validateEmail(email)) {
         alert('Something wrong in your data');
         return;
     }
 
-    alert('Ready to register "' + login + '" with password "' + password + '"');
+    var params = {};
+    params['username'] = login;
+    params['password'] = password;
+    params['email'] = email;
 
-    /*$.ajax({
-        url: '/api/login',
-        method: 'POST',
-        data: {login: login, password: password},
-        dataType: 'text',
-        success: (answer) => {
-            answerParsed = JSON.parse(answer);
-            if(!answerParsed.connected) alert("No connection to DB!");
-            else {
-                if (answerParsed.auth_success) {
-                    console.log("success");
-                    redirect_href = extractGetParams("r");
-                    if (redirect_href === undefined) redirect_href = '/user';
-                    document.location.href = redirect_href;
-                    //alert(redirect_href);
-                }
-                else {
-                    alert("Wrong login/password!");
-                }
-            }
-        },
-        error: (e) => {
-            console.log(e);
-            alert("No connection to the server, try again later");
-        }
-    });*/
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "#");
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
 };
 
 $().ready(function () {

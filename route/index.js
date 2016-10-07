@@ -1,7 +1,8 @@
 var main_views = require("../views/main"),
     admin_views = require("../views/admin"),
     user_views = require("../views/user"),
-    api_views = require("../views/api");
+    api_views = require("../views/api"),
+    mail_views = require("../views/mail");
 
 module.exports = function(app) {
     app.get("/", main_views.landing_page);
@@ -13,7 +14,8 @@ module.exports = function(app) {
     // User pages
     app.get('/user/', user_views.check_auth, user_views.user_info);
     app.get('/user/login', user_views.login);
-    app.get('/user/register', user_views.register_user);
+    app.get('/user/register', user_views.showRegisterPage);
+    app.post('/user/register', user_views.registerNewUser);
 
     // API + AJAX
     app.post("/api/login", api_views.validate_login);
@@ -24,9 +26,8 @@ module.exports = function(app) {
     app.get("/admin/", admin_views.main);
 
     // Debug features
-    app.get('/test', (req, res) => {
-        res.render('test.ejs');
-    });
+    app.get('/test', mail_views.show_message_input);
+    app.post('/test', mail_views.send_message);
 
     app.get('/test/api', (req, res) => {
         res.send('{"Math": ["Math1", "Math2"], "PE": ["PE1", "PE2"]}');
