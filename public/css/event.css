@@ -32,7 +32,7 @@
 .description {
   float: left;
   display: inline-block;
-  margin: 25px 300px 70px 50px;
+  margin: 25px 25% 70px 50px;
   width: 45%;
   font-size: 19px;
 }
