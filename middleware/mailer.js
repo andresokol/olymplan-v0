@@ -25,7 +25,7 @@ exports.test = () => {
  * @param {string} email
  */
 exports.sendVerificationLetter = (username, email) => {
-    console.log('[middleware/email.js:24] Sending mail - ', username, email);
+    console.log('[middleware/mailer.js:24] Sending mail -', username, email);
     var messageOptions = {
         from: '"Olymplan" <' + process.env.EMAIL_FULL_ADDRESS + '>',
         to: email,
@@ -36,7 +36,8 @@ exports.sendVerificationLetter = (username, email) => {
                 "<a href='http://localhost:8080/user'>http://localhost:8080/user</a>" +
                 "<hr><p>С уважением, я</p>"
     };
-    transporter.sendMail(mailOptions, (err, info) => {
+
+    transporter.sendMail(messageOptions, (err, info) => {
         if (err) console.log(JSON.stringify(err));
         else     console.log(JSON.stringify(info));
     });

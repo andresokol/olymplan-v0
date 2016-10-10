@@ -1,8 +1,7 @@
 var main_views = require("../views/main"),
     admin_views = require("../views/admin"),
     user_views = require("../views/user"),
-    api_views = require("../views/api"),
-    mail_views = require("../views/mail");
+    api_views = require("../views/api");
 
 module.exports = function(app) {
     app.get("/", main_views.landing_page);
@@ -26,8 +25,8 @@ module.exports = function(app) {
     app.get("/admin/", admin_views.main);
 
     // Debug features
-    app.get('/test', mail_views.show_message_input);
-    app.post('/test', mail_views.send_message);
+    //app.get('/test', mail_views.show_message_input);
+    //app.post('/test', mail_views.send_message);
 
     app.get('/test/api', (req, res) => {
         res.send('{"Math": ["Math1", "Math2"], "PE": ["PE1", "PE2"]}');

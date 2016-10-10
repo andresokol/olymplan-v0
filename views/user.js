@@ -1,7 +1,7 @@
-var utils = require('../middleware/utils');
+var utils = require('../middleware/utils'),
     tables = require("../db_tables_config.json"),
     db = require('../middleware/db'),
-    email = require('../middleware/email');
+    mailer = require('../middleware/mailer');
 
 exports.check_auth = (req, res, next) => {
     if (!req.session.username)
@@ -50,11 +50,10 @@ exports.registerNewUser = (req, res) => {
     db.addRowToTable(tables.user_list, values).then(() => {
         console.log("[views/api.js:51] New user - " + username);
         req.session.username = username;
-        email.test();
         res.redirect("/user");
-        email.sendVerificationLetter(username, email);
-    });/*.catch((e) => {
+        mailer.sendVerificationLetter(username, email);
+    }, (e) => {
         console.log("[views/api.js:51] OOOPS " + typeof(e));
         res.send("Something went wrong" + JSON.stringify(e));
-    });*/
+    });
 };
