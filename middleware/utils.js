@@ -54,3 +54,25 @@ exports.listToStringRange = (list) => {
     // cutting ', ' from start
     return response.substr(2);
 }
+
+/**
+ * @param {string} String_to_hash
+ * @return {int} Hash
+ */
+
+exports.getHash = (s) => {
+    var hash1 = 0,
+        prime1 = 98459,
+        hash2 = 0,
+        prime2 = 104459;
+    for (let i = 0; i < s.length; i++) {
+        let chr = s.charCodeAt(i);
+        hash1 = hash1 * prime1 + chr;
+        hash1 |= 0;
+        hash1 = Math.abs(hash1);
+        hash2 = hash2 * prime2 + chr;
+        hash2 |= 0;
+        hash2 = Math.abs(hash2);
+    }
+    return hash1.toString(16) + hash2.toString(16);
+};

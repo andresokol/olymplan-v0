@@ -46,14 +46,28 @@ exports.registerNewUser = (req, res) => {
     values['username'] = username;
     values['password'] = password;
     values['email'] = utils.sanitizeQuotes(email);
+    values['verified'] = false;
 
-    db.addRowToTable(tables.user_list, values).then(() => {
-        console.log("[views/api.js:51] New user - " + username);
+    var verification_code = utils.getHash(username);
+    console.log(values);
+    console.log(verification_code);
+    db.addNewUser(values, verification_code).then(() => {
         req.session.username = username;
         res.redirect("/user");
-        mailer.sendVerificationLetter(username, email);
+        mailer.sendVerificationLetter(username, email, verification_code);
     }, (e) => {
         console.log("[views/api.js:51] OOOPS " + typeof(e));
         res.send("Something went wrong" + JSON.stringify(e));
     });
+};
+
+
+exports.verifyNewUser = (req, res) => {
+    var code = req.params.code;
+
+    if (isNaN(code)) {
+        res.send("Something went wrong");
+        return;
+    }
+    res.send(req.params.code, req.params.username);
 };

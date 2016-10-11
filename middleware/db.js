@@ -15,7 +15,7 @@ var run_request = function(qstring) {
         pool.query(qstring, function (err, result) {
             //console.log('db.js:20', result);
             if(err) {
-                console.log(err);
+                console.log(JSON.stringify(err));
                 reject(err);
             }
             resolve(result.rows);
@@ -103,19 +103,21 @@ exports.check_username_existence = (username) => {
  * @param {object} values
  * @returns {Promise}
  */
-exports.addRowToTable = (table, values) => {
+exports.addNewUser = (values, ver_code) => {
     return new Promise((resolve, reject) => {
-        var qstring = "INSERT INTO " + table + " values(";
+        var qstring = "INSERT INTO " + tables.user_list + " values(";
 
         for(var index in values) {
-            if (typeof(values[index]) === typeof("sample string")) qstring += "'";
+            if (typeof(values[index]) !== typeof(10)) qstring += "'";
             qstring += values[index].toString();
-            if (typeof(values[index]) === typeof("sample string")) qstring += "'";
+            if (typeof(values[index]) !== typeof(10)) qstring += "'";
             qstring += ",";
         }
 
         qstring = qstring.substr(0, qstring.length - 1);
         qstring += ");";
+
+        qstring += "\nINSERT INTO " + tables.verification_codes + " values('" + values['username'] + "','" + ver_code + "');";
 
         console.log("[db.js:120]", qstring);
 
@@ -128,6 +130,8 @@ exports.addRowToTable = (table, values) => {
         });
     });
 };
+
+//db.verifyUser()
 
 /*
 // FIXME: copy-paste detected

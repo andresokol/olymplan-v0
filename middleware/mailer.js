@@ -24,16 +24,17 @@ exports.test = () => {
  * @param {string} How to call user
  * @param {string} email
  */
-exports.sendVerificationLetter = (username, email) => {
-    console.log('[middleware/mailer.js:24] Sending mail -', username, email);
+exports.sendVerificationLetter = (username, email, ver_code) => {
+    console.log('[middleware/mailer.js:24] Sending mail -', username, email, ver_code);
     var messageOptions = {
         from: '"Olymplan" <' + process.env.EMAIL_FULL_ADDRESS + '>',
         to: email,
         subject: 'Добро пожаловать в Олимплан',
         text: "Привет " + username  + ",\n \n добро пожаловать в Олимплан. Подтверди регистрацию, перейдя по следующей ссылке:\n\n" +
-                "http://localhost:8080/user \n\n\n\n -----\n С уважением, я",
+                "http://localhost:8080/user/verify/" + ver_code + "/" + username + " \n\n\n\n -----\n С уважением, я",
         html: "<p>Привет " + username + ",</p><p>добро пожаловать в Олимплан. Подтверди регистрацию, перейдя по следующей ссылке:</p>" +
-                "<a href='http://localhost:8080/user'>http://localhost:8080/user</a>" +
+                "<a href='http://localhost:8080/user/verify" + ver_code + "/" + username +
+                "'>http://localhost:8080/user/verify/" + ver_code + "/" + username +"</a>" +
                 "<hr><p>С уважением, я</p>"
     };
 

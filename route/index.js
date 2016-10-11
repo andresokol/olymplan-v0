@@ -1,7 +1,8 @@
 var main_views = require("../views/main"),
     admin_views = require("../views/admin"),
     user_views = require("../views/user"),
-    api_views = require("../views/api");
+    api_views = require("../views/api"),
+    utils = require('../middleware/utils');
 
 module.exports = function(app) {
     app.get("/", main_views.landing_page);
@@ -15,6 +16,7 @@ module.exports = function(app) {
     app.get('/user/login', user_views.login);
     app.get('/user/register', user_views.showRegisterPage);
     app.post('/user/register', user_views.registerNewUser);
+    app.get('/user/verify/:code/:username', user_views.verifyNewUser);
 
     // API + AJAX
     app.post("/api/login", api_views.validate_login);
@@ -30,6 +32,12 @@ module.exports = function(app) {
 
     app.get('/test/api', (req, res) => {
         res.send('{"Math": ["Math1", "Math2"], "PE": ["PE1", "PE2"]}');
+    });
+
+    app.get('/test/hash/:str_to_hash', (req, res) => {
+        var hash = utils.getHash(req.params.str_to_hash);
+        console.log('eee');
+        res.send("eee");
     });
 
     app.get("*", (req, res) => {
