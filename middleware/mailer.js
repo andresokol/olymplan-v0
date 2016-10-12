@@ -7,14 +7,17 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-transporter.verify(function(error, success) {
-   if (error) {
-       console.log('Something wrong with email service!');
-       console.log(error);
-   } else {
-        console.log('Email service is active!');
-   }
-});
+exports.checkConnection = (reject) => {
+    transporter.verify(function(error, success) {
+        if (error) {
+            console.log('Error in connection to email provider:');
+            console.log(error);
+            reject();
+        } else {
+            console.log('Connection to email provider OK');
+        }
+    });
+};
 
 exports.test = () => {
     console.log("test");
