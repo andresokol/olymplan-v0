@@ -1,9 +1,10 @@
 .navbar a {
-  color: black;
+  color: white;
 }
 
 .header {
   margin: 35px 25px 25px 50px;
+  color: white;
 }
 
 .logo {
@@ -54,6 +55,6 @@
 }
 
 .wrapper {
-  height: 100%;
+  height: 150px;
   background: linear-gradient(to top, #FF1509, #8E09FF);
 }

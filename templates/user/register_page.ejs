@@ -1,5 +1,14 @@
-<%- include ../blocks/head %>
-
+<!DOCTYPE html>
+<head>
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Scada" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <meta charset="utf-8">
+    <link href="/st/css/register_login.css" rel="stylesheet" type="text/css" />
+    <link href="/st/css/basic_ui.css" rel="stylesheet" type="text/css" />
+    <script src="/st/js/jquery-3.1.0.js"></script>
+    <script src="/st/js/check_login.js"></script>
+</head>
 <script src="/st/js/register.js"></script>
 
 <style>
@@ -7,11 +16,33 @@
         display: block;
     }
 </style>
+<div class="wrapper">
+  <div class="navbar">
+    <div class="nav_content">
+      <div class="icon">
+             <!-- <a href="/"><img src="/st/img/logo_v0-0-1.svg"></a> -->
+      </div>
+    </div>
+  </div>
+<div class="header">
+  <h1>Register</h1>
+</div>
 
-<h1>Register</h1>
-
-<input name="login" type="text" id="login_input" placeholder="Логин"/>
-<input name="email" type="text" id="email_input" placeholder="Электронная почта"/>
-<input name="password1" type="password" id="password_input_1" placeholder="Пароль"/>
-<input name="password2" type="password" id="password_input_2" placeholder="Пароль еще раз"/>
-<input type="submit" value="login!" id="sumbit_login_btn" onclick="submitRegData();"/>
+<div class="input_fields">
+  <input name="login" type="text" id="login_input" placeholder="Логин"/>
+  <input name="email" type="text" id="email_input" placeholder="Электронная почта"/>
+  <input name="password1" type="password" id="password_input_1" placeholder="Пароль"/>
+  <input name="password2" type="password" id="password_input_2" placeholder="Пароль еще раз"/>
+  <input type="submit" value="login!" id="sumbit_login_btn" onclick="submitRegData();"/>
+</div>
+</div>
+<div class="footer">
+    <ul>
+        <li>
+            <a href="/about">О нас</a>
+        </li>
+        <li>
+            ©OLYMPLAN 2k16.
+        </li>
+    </ul>
+</div>
