@@ -19,7 +19,11 @@ exports.user_info = (req, res) => {
 };
 
 exports.login = (req, res) => {
-    res.render('user/login_page');
+    if (req.session.username === undefined) {
+        res.render('user/login_page');
+    } else {
+        res.redirect("/user/");
+    }
 };
 
 exports.showRegisterPage = (req, res) => {
