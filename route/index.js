@@ -16,7 +16,7 @@ module.exports = function(app) {
     app.get('/user/login', user_views.login);
     app.get('/user/register', user_views.showRegisterPage);
     app.post('/user/register', user_views.registerNewUser);
-    app.get('/user/verify/:code/:username', user_views.verifyNewUser);
+    app.get('/user/verify/:vercode/:username', user_views.verifyNewUser);
 
     // API + AJAX
     app.post("/api/login", api_views.validate_login);
@@ -41,6 +41,6 @@ module.exports = function(app) {
     });
 
     app.get("*", (req, res) => {
-        res.send("404, ouch!");
+        res.send(404, "404, ouch!");
     });
 }

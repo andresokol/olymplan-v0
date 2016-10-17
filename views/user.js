@@ -11,7 +11,11 @@ exports.check_auth = (req, res, next) => {
 };
 
 exports.user_info = (req, res) => {
-    res.send(req.session.username);
+    db.getUserData(req.session.username).then((result) => {
+        res.send(JSON.stringify(result[0]));
+    }).catch((e) => {
+        res.send(e);
+    });
 };
 
 exports.login = (req, res) => {
@@ -63,11 +67,18 @@ exports.registerNewUser = (req, res) => {
 
 
 exports.verifyNewUser = (req, res) => {
-    var code = req.params.code;
+    var vercode = req.params.vercode,
+        username = req.params.username;
 
-    if (isNaN(code)) {
-        res.send("Something went wrong");
+    if (isNaN(parseInt(vercode, 16)) ||
+            vercode.match(/[^0-9a-f]/i) !== null) {
+        res.send('Sorry, seems smth gone wrong. Try to check your link.');
         return;
     }
-    res.send(req.params.code, req.params.username);
+
+    db.verifyUser(username, vercode, () => {
+        res.redirect("/user/");
+    }, () => {
+        res.send('Sorry, seems smth gone wrong. Try to check your link.');
+    });
 };

@@ -82,7 +82,7 @@ exports.check_username_existence = (username) => {
         var qstring = "SELECT * FROM " + tables.user_list +
                             " WHERE username = '"  + username + "';";
 
-        console.log(qstring);
+        //console.log(qstring);
 
         run_request(qstring).then((result) => {
             //console.log('db.js:88', result.length);
@@ -131,37 +131,60 @@ exports.addNewUser = (values, ver_code) => {
     });
 };
 
-//db.verifyUser()
-
-/*
-// FIXME: copy-paste detected
-exports.get_universities_as_table = () => {
-    return new Promise((resolve, reject) => {
-        get_table(tables.university_list).then(resolve).catch(reject);
-    });
-}
-
-exports.get_faculties_as_table = () => {
-    return new Promise((resolve, reject) => {
-        get_table(tables.faculties_list).then(resolve).catch(reject);
-    });
-}
-
-exports.get_specialties_as_table = () => {
-    return new Promise((resolve, reject) => {
-        get_table(tables.specialities_list).then(resolve).catch(reject);
-    });
-}
-
-exports.get_olympiads_as_table = () => {
-    return new Promise((resolve, reject) => {
-        get_table(tables.olympiad_list).then(resolve).catch(reject);
-    });
-}
-
-exports.get_olympiad_tours_as_table = () => {
-    return new Promise((resolve, reject) => {
-        get_table(tables.tours_list).then(resolve).catch(reject);
-    });
-}
+/**
+* Deletes verification pair and states user as verified
+*
+* @param {string} username
+* @param {string} code
+* @return {void}
 */
+var deleteVerificationCode = (username, code) => {
+    var qstring = "DELETE FROM " + tables.verification_codes + " WHERE username = '"
+                            + username + "' AND code = '" + code + "';\n"
+                            + "UPDATE " + tables.user_list + " SET verified = true WHERE username = '"
+                            + username + "';";
+    //console.log(qstring);
+    run_request(qstring);
+};
+
+/**
+ * Checks if pair (username, code) exists in table, then delete if true
+ *
+ * @param {string} username
+ * @param {string} code
+ * @param {function} resolve
+ * @param {function} reject
+ *
+ * @return {void}
+ */
+exports.verifyUser = (username, code, resolve, reject) => {
+    var qstring = "SELECT code = '" + code + "' AS match FROM " + tables.verification_codes
+                            + " WHERE username = '" + username + "';";
+
+    //console.log(qstring);
+
+    run_request(qstring).then((result) => {
+        if (result[0].match) {
+            deleteVerificationCode(username, code);
+            resolve();
+        }
+        else {
+            reject();
+        }
+    }).catch(() => {
+        reject();
+    });
+};
+
+/**
+ * Returns all user data from DB
+ *
+ * @param {string} username
+ * @return {Promise}
+ */
+exports.getUserData = (username) => {
+    return new Promise((resolve, reject) => {
+        var qstring = "SELECT * FROM " + tables.user_list + " WHERE username = '" + username + "';";
+        run_request(qstring).then(resolve).catch(reject);
+    });
+};
