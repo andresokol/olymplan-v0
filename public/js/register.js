@@ -12,11 +12,12 @@ var validateEmail = function(s) {
     return s.match(/.+@.+\..+/i);
 }
 
-var checkPasswordAvailability = function (login_string, resolve, reject) {
+var checkPasswordAvailability = function (login_string, before, resolve, reject) {
     $.ajax({
         url: '/api/check_username/' + login_string,
         method: 'GET',
         dataType: 'text',
+        beforeSend: before,
         success: function (answer) {
             console.log(answer);
             var username_is_free = JSON.parse(answer);
@@ -65,24 +66,45 @@ var submitRegData = function (event) {
 $().ready(function () {
     $('#login_input').focusout(function () {
         var inputed_login = $('#login_input').val();
+        $("#err_login_forbd_symb").addClass("msg_box--disabled");
+        $("#err_login_occupied").addClass("msg_box--disabled");
+        $("#suc_login").addClass("msg_box--disabled");
 
-        if (!checkIfNoForbiddenSymbols(inputed_login)) alert('Forbidden symbols in login!');
+        if (!checkIfNoForbiddenSymbols(inputed_login)) {
+            $("#err_login_forbd_symb").removeClass("msg_box--disabled");
+        }
         else {
             checkPasswordAvailability(inputed_login, function() {
-                alert('Good login!');
+                $("#wait_login_check").removeClass("msg_box--disabled");
             }, function() {
-                alert('Login is already occupied!');
+                $("#wait_login_check").addClass("msg_box--disabled");
+                $("#suc_login").removeClass("msg_box--disabled");
+            }, function() {
+                $("#wait_login_check").addClass("msg_box--disabled");
+                $("#err_login_occupied").removeClass("msg_box--disabled");
             });
         }
     });
 
     $('#password_input_2').focusout(function() {
-        if(matchPasswords()) alert('Passwords match!');
-        else                 alert('Check your passwords once again!');
+        if(matchPasswords()) {
+            $("#err_passwrd2_no_match").addClass("msg_box--disabled");
+            $("#suc_passwrd2").removeClass("msg_box--disabled");
+        }
+        else {
+            $("#err_passwrd2_no_match").removeClass("msg_box--disabled");
+            $("#suc_passwrd2").addClass("msg_box--disabled");
+        }
     });
 
     $('#email_input').focusout(function () {
-        if (validateEmail($(this).val())) alert("Good");
-        else alert("Bad");
+        if (validateEmail($(this).val())) {
+            $("#err_email_not_valid").addClass("msg_box--disabled");
+            $("#suc_email").removeClass("msg_box--disabled");
+        }
+        else {
+            $("#err_email_not_valid").removeClass("msg_box--disabled");
+            $("#suc_email").addClass("msg_box--disabled");
+        }
     });
 });
