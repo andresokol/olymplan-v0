@@ -52,7 +52,7 @@ var submit_login = function (event) {
                     //alert(redirect_href);
                 }
                 else {
-                    alert("Wrong login/password!");
+                    $("#err_wrong_pair").removeClass("msg_box--disabled");
                 }
             }
         },
