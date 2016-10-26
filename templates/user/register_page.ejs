@@ -25,62 +25,29 @@
     </div>
   </div>
 <div class="header">
-  <h1>Register</h1>
+  <h1>$регистрация</h1>
 </div>
-
-<style>
-.msg_box {
-    border-radius: 5px;
-    width: 200px;
-    border: 1px solid;
-    padding: 5px;
-}
-
-.msg_box--err {
-    border-color: red;
-    background-color: rgba(255, 0, 0, 0.2);
-    color: darkred;
-}
-
-.msg_box--wait {
-    border-color: grey;
-    background-color: rgba(0, 0, 0, 0.1);
-    color: rgba(0, 0, 0, 0.7);
-}
-
-.msg_box--suc {
-    border-color: green;
-    background-color: rgba(0, 255, 0, 0.2);
-    color: darkgreen;
-}
-
-.msg_box--disabled {
-    display: none;
-}
-</style>
-
 <div class="input_fields">
-  <input name="login" type="text" id="login_input" placeholder="Логин"/>
   <div class="msg_box msg_box--err msg_box--disabled" id="err_login_occupied">Логин занят!</div>
   <div class="msg_box msg_box--err msg_box--disabled" id="err_login_forbd_symb">Плохие символы в логине</div>
   <div class="msg_box msg_box--wait msg_box--disabled" id="wait_login_check">Проверяем логин...</div>
   <div class="msg_box msg_box--suc msg_box--disabled" id="suc_login">Логин подходит!</div>
+  <input name="login" type="text" id="login_input" placeholder="Логин"/>
 
-  <input name="email" type="text" id="email_input" placeholder="Электронная почта"/>
   <div class="msg_box msg_box--err msg_box--disabled" id="err_email_not_valid">Ошибка в адресе почты!</div>
   <div class="msg_box msg_box--suc msg_box--disabled" id="suc_email">Почта подходит!</div>
+  <input name="email" type="text" id="email_input" placeholder="Электронная почта"/>
 
-  <input name="password1" type="password" id="password_input_1" placeholder="Пароль"/>
   <div class="msg_box msg_box--err msg_box--disabled" id="err_passwrd_forbd_symb">Плохие символы в пароле!</div>
   <div class="msg_box msg_box--err msg_box--disabled" id="err_passwrd_too_weak">Слишком простой пароль!</div>
   <div class="msg_box msg_box--suc msg_box--disabled" id="suc_passwrd">Норм пароль</div>
+  <input name="password1" type="password" id="password_input_1" placeholder="Пароль"/>
 
-  <input name="password2" type="password" id="password_input_2" placeholder="Пароль еще раз"/>
   <div class="msg_box msg_box--err msg_box--disabled" id="err_passwrd2_no_match">Пароли не совпадают!</div>
   <div class="msg_box msg_box--suc msg_box--disabled" id="suc_passwrd2">Все огонь! &#9749;</div>
-
-  <input type="submit" value="login!" id="sumbit_login_btn" onclick="submitRegData();"/>
+  <input name="password2" type="password" id="password_input_2" placeholder="Пароль еще раз"/>
 </div>
+  <input type="submit" value="login!" id="submit_login_btn" onclick="submitRegData();"/>
 </div>
 <div class="footer">
     <ul>

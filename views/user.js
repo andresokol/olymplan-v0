@@ -13,7 +13,9 @@ exports.check_auth = (req, res, next) => {
 
 exports.user_info = (req, res) => {
     db.getUserData(req.session.username).then((result) => {
-        res.send(JSON.stringify(result[0]));
+        res.render('user/user_page', {
+            data: result[0]
+        });
     }).catch((e) => {
         res.send(e);
     });

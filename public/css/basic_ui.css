@@ -148,3 +148,34 @@ body {
   height: 15px;
   display: block;
 }
+
+.msg_box {
+    width: 200px;
+    border: 1px solid;
+    padding: 3px;
+    float: right;
+    display: inline-table;
+    margin-right: 390px;
+}
+
+.msg_box--err {
+    border-color: red;
+    background-color: rgba(255, 0, 0, 0.2);
+    color: darkred;
+}
+
+.msg_box--wait {
+    border-color: grey;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.msg_box--suc {
+    border-color: green;
+    background-color: rgba(0, 255, 0, 0.2);
+    color: darkgreen;
+}
+
+.msg_box--disabled {
+    display: none;
+}
