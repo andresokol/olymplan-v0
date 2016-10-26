@@ -1,5 +1,7 @@
-var db = require('../middleware/db'),
-    tables = require('../db_tables_config.json');
+const db = require('../middleware/db'),
+    tables = require('../db_tables_config.json'),
+    crypto = require('crypto'),
+    kek = console.log;
 
 exports.validate_admin_rights = (req, res, next) => {
     if (req.session.is_admin == true) {
@@ -27,9 +29,12 @@ exports.validate_admin_rights = (req, res, next) => {
 
 exports.main = (req, res) => {
     db.get_table(tables.event_list).then(function (result) {
-      res.render('admin/main', {
-        data : result[0]
-        //код, который парсит JSON
-      });
+        db.get_table(tables.user_list, result).then(function (result) {
+            res.render('admin/main', {
+                events : result[0],
+                users : result[1]
+                //код, который парсит JSON
+            });
+        });
     });
-}
+};

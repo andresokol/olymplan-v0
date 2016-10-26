@@ -1,9 +1,19 @@
-<h1> HELLO BEYOTCH </h1>
-<% for (var i in data) { %>
+<h3> Events list: </h3>
+<% for (var i in events) { %>
   <div>
-  <% for (var j in data[i]) {%>
-    <%= data[i][j] %>, <%= j %> <br>
+  <% for (var j in events[i]) {%>
+    <%= events[i][j] %>, <%= j %> <br>
   <% } %>
   </div>
   <hr>
+<% } %>
+
+<h3> Users list: </h3>
+<% for (var i in users) { %>
+    <div>
+    <% for (var j in users[i]) { %>
+        <%= users[i][j] %> <br>
+    <% } %>
+    </dev>
+    <hr>
 <% } %>

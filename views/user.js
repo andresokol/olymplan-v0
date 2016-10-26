@@ -1,7 +1,8 @@
 var utils = require('../middleware/utils'),
     tables = require("../db_tables_config.json"),
     db = require('../middleware/db'),
-    mailer = require('../middleware/mailer');
+    mailer = require('../middleware/mailer'),
+    crypto = require('crypto');
 
 exports.check_auth = (req, res, next) => {
     if (!req.session.username)
@@ -51,8 +52,12 @@ exports.registerNewUser = (req, res) => {
     }
 
     var values = {};
+    const salt = process.env.HASH_SALT;
+    const hashed_password = crypto.createHmac('sha256', salt)
+                   .update(password)
+                   .digest('hex');
     values['username'] = username;
-    values['password'] = password;
+    values['password'] = hashed_password;
     values['email'] = utils.sanitizeQuotes(email);
     values['verified'] = false;
 

@@ -1,5 +1,7 @@
-var db = require('../middleware/db'),
-    utils = require('../middleware/utils');
+const salt = process.env.HASH_SALT,
+    db = require('../middleware/db'),
+    utils = require('../middleware/utils'),
+    crypto = require('crypto');
 
 exports.validate_login = function (req, res) {
     var login = utils.sanitizeQuotes(req.body.login),
@@ -11,10 +13,13 @@ exports.validate_login = function (req, res) {
         return;
     }
 
-    console.log(login, pass);
+    const hashed_pass = crypto.createHmac('sha256', salt)
+                   .update(pass)
+                   .digest('hex');
+    console.log(login, hashed_pass);
 
-    db.validate_login(login, pass, function(auth_result) {
-        console.log(login, pass, auth_result);
+    db.validate_login(login, hashed_pass, function(auth_result) {
+        console.log(login, hashed_pass, auth_result);
 
         if (auth_result.auth_success) req.session.username = login;
 
