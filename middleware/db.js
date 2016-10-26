@@ -23,10 +23,10 @@ var run_request = function(qstring) {
     });
 };
 
-exports.get_by_id = function(table, id, callback) {
+exports.getById = function(table, id, callback, arr_to_concat = []) {
     var qstring = "SELECT * FROM " + table + " WHERE id = '" + id + "';";
     run_request(qstring).then((result) => {
-                callback(result[0]);
+                callback(arr_to_concat.concat(result));
             }, (err) => {
                 callback(null);
             });
