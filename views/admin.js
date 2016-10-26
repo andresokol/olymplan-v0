@@ -11,7 +11,7 @@ exports.validate_admin_rights = (req, res, next) => {
         return;
     }
     if (req.session.username == undefined) {
-        res.render('login_page');
+        res.redirect('/user/login?r=' + "/admin");  // FIXME: get request adress
         return;
     }
 
@@ -26,7 +26,10 @@ exports.validate_admin_rights = (req, res, next) => {
 }
 
 exports.main = (req, res) => {
-    db.get_table(tables.university_list)
-        .then((result) => {return db.get_table(tables.faculties_list, result);})
-        .then((result) => {res.render('admin', {data: JSON.stringify(result)});});
+    db.get_table(tables.event_list).then(function (result) {
+      res.render('admin/main', {
+        data : result[0]
+        //код, который парсит JSON
+      });
+    });
 }
