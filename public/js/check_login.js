@@ -42,7 +42,7 @@ var submit_login = function (event) {
         dataType: 'text',
         success: (answer) => {
             answerParsed = JSON.parse(answer);
-            if(!answerParsed.connected) alert("No connection to DB!");
+            if(!answerParsed.connected) $('#err_wrong_pair').removeClass('msg_box--disabled');
             else {
                 if (answerParsed.auth_success) {
                     console.log("success");
