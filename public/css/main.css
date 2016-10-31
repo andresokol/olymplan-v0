@@ -4,8 +4,6 @@ h1 p {
 
 body {
     margin: 0;
-    background: url("/st/img/bg-math-regata-compressor.jpg");
-    background-size: cover;
     font-family: 'Scada', sans-serif;
     color: white;
 }
@@ -165,10 +163,12 @@ body {
   text-decoration: underline;
 }
 
-.wrapper {
-  min-height: 100%;
+.wrapper_main {
+  max-height: 917px;
   margin: 0 auto -52px;
   display: block;
+  background: url("/st/img/bg-math-regata-compressor.jpg");
+  background-size: cover;
 }
 
 .push {
