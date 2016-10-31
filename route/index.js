@@ -2,7 +2,8 @@ var main_views = require("../views/main"),
     admin_views = require("../views/admin"),
     user_views = require("../views/user"),
     api_views = require("../views/api"),
-    utils = require('../middleware/utils');
+    utils = require('../middleware/utils'),
+    blog_views = require('../views/blog');
 
 module.exports = function(app) {
     app.get("/", main_views.landing_page);
@@ -17,6 +18,10 @@ module.exports = function(app) {
     app.get('/user/register', user_views.showRegisterPage);
     app.post('/user/register', user_views.registerNewUser);
     app.get('/user/verify/:vercode/:username', user_views.verifyNewUser);
+
+    // Blog
+    app.get('/blog/', blog_views.blogList);
+    app.get('/blog/:postId', blog_views.blogPost);
 
     // API + AJAX
     app.post("/api/login", api_views.validate_login);
