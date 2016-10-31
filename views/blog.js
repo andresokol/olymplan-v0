@@ -14,5 +14,10 @@ exports.blogPost = (req, res) => {
         res.send().status(404);
         return;
     }
-    res.send(req.params.postId);
+
+    db.getById('blogposts', req.params.postId, (result) => {
+        res.render('blog/post', {
+            data: result[0]
+        })
+    });
 }

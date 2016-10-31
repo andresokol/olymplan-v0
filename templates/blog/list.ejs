@@ -1,6 +1,6 @@
 <% for(var i = 0; i < data.length; i++) { %>
     <div>
-        <h1><%= data[i].title %></h1>
+        <a href="/blog/<%= data[i].id %>"><h1><%= data[i].title %></h1></a>
         <p><%= data[i].body %></p>
         <h4><%= data[i].author %></h4>
     </div>
