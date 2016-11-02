@@ -1,21 +1,76 @@
+<script src="/st/js/jquery-3.1.0.js"></script>
+
 <style>
 div.editable {
     font-size: 14pt;
     font-family: sans-serif;
     padding: 15px;
     margin: 15px;
-    width: 90 vw;
     border: 1px solid #ddd;
+}
+
+div.editable p:hover {
+    text-decoration: ;
 }
 
 div#title {
     font-weight: bold;
+    width: 50vw;
+}
+
+div#title:empty:before {
+    content: "Заголовок поста...";
+    display: block;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 div#body {
-    height: 90 vh;
+    height: 50vh;
+    width: 90vw;
 }
 </style>
 
-<div contenteditable="true" id="title" class="editable">Здесь будет заголовок</div>
-<div contenteditable="true" id="body" class="editable">А здесь тело поста</div>
+
+<script>
+$(document).ready(function() {
+    $(window).keydown(function(event) {
+        if (event.key === 's' && event.ctrlKey) {
+            event.stopPropagation();
+            event.preventDefault();
+            window.localStorage['post-title'] = $("#title").text();
+            window.localStorage['post-body'] = $("#body").html();
+            return false;
+        }
+
+        if (event.key === 'p' && event.ctrlKey) {
+            event.stopPropagation();
+            event.preventDefault();
+            console.log(window.localStorage);
+            return false;
+        }
+    });
+
+    var date = new Date();
+    $("#time-cnt").html(date);
+
+    if(window.localStorage.length > 0) {
+        $("#title").text(window.localStorage['post-title']);
+        $("#body").html(window.localStorage['post-body']);
+    }
+});
+
+</script>
+
+<a href="..">Назад</a>
+
+<div style="display: flex;">
+    <div contenteditable="true" id="title" class="editable"></div>
+    <div>
+        <div id="time-cnt"></div>
+        <a href="/submit">Опубликовать</a>
+    </div>
+</div>
+<div id="body" class="editable">
+    <p contenteditable="true">А здесь тело поста...</p>
+    <p contenteditable="true">...из двух параграфов</p>
+</div>

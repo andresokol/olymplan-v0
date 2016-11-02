@@ -15,6 +15,8 @@ var run_request = function(qstring) {
         pool.query(qstring, function (err, result) {
             //console.log('db.js:20', result);
             if(err) {
+                console.log("DB request:");
+                console.log(qstring);
                 console.log(JSON.stringify(err));
                 reject(err);
             }
