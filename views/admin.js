@@ -38,3 +38,13 @@ exports.main = (req, res) => {
         });
     });
 };
+
+
+exports.blogEditPost = (req, res) => {
+    res.render("admin/blog_editor");
+}
+
+
+exports.blogNewPost = (req, res) => {
+    res.render("admin/blog_editor");
+}

@@ -30,6 +30,8 @@ module.exports = function(app) {
     // Administer pages
     app.get("/admin*", admin_views.validate_admin_rights);
     app.get("/admin/", admin_views.main);
+    app.get("/admin/blog/editor/:id", admin_views.blogEditPost); // guess it is the easiest way
+    app.get("/admin/blog/editor/", admin_views.blogNewPost);     // to do it, need to think about '/admin/blog'
 
     // Debug features
     //app.get('/test', mail_views.show_message_input);
