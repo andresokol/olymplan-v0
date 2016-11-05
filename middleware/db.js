@@ -190,3 +190,53 @@ exports.getUserData = (username) => {
         run_request(qstring).then(resolve).catch(reject);
     });
 };
+
+/**
+ * Adds row to table
+ *
+ * @param {String} table name
+ * @param {object} data to add
+ * @param {boolean} take care of index
+ * @param {function} callback
+ */
+var addRowToTable = (table_name, data, take_care_of_index, callback) => {
+    var qstring = "INSERT INTO " + table_name + " values(";
+
+    if (take_care_of_index) qstring += "(SELECT MAX(id) + 1 FROM " + table_name + "),";
+
+    for(let index in data) {
+        if (typeof(data[index]) !== typeof(10)) qstring += "'"; // random int inside brackets
+        qstring += data[index];
+        if (typeof(data[index]) !== typeof(10)) qstring += "'"; // random int inside brackets
+        qstring += ",";
+    }
+    qstring = qstring.slice(0, -1) + ");"
+
+    run_request(qstring).then((result) => {
+        callback();
+    }).catch((err) => {
+        callback(err);
+    });
+};
+
+
+/**
+ * Adds new post
+ *
+ * @param {string} title
+ * @param {string} post body
+ * @param {string} author username
+ * @param {function} callback
+ */
+exports.addNewPostToDB = (title, body, author, callback) => {
+    var data = {
+                    'title': title,
+                    'body': body,
+                    'author': author,
+                    'created': (new Date()).toString()
+                };
+
+    addRowToTable(tables.blog, data, true, (err) => {
+        callback(err);
+    });
+};

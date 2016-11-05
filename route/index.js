@@ -32,6 +32,8 @@ module.exports = function(app) {
     app.get("/admin/", admin_views.main);
     app.get("/admin/blog/editor/:id", admin_views.blogEditPost); // guess it is the easiest way
     app.get("/admin/blog/editor/", admin_views.blogNewPost);     // to do it, need to think about '/admin/blog'
+    app.post("/admin/blog/editor/", admin_views.blogSubmitNewPost);
+    app.post("/admin/blog/editor/:id", admin_views.blogSubmitModifiedPost);
 
     // Debug features
     //app.get('/test', mail_views.show_message_input);

@@ -1,7 +1,7 @@
 <script src="/st/js/jquery-3.1.0.js"></script>
 
 <style>
-div.editable {
+.editable {
     font-size: 14pt;
     font-family: sans-serif;
     padding: 15px;
@@ -13,32 +13,66 @@ div.editable p:hover {
     text-decoration: ;
 }
 
-div#title {
+input#title {
     font-weight: bold;
     width: 50vw;
 }
 
-div#title:empty:before {
+input#title:empty:before {
     content: "Заголовок поста...";
     display: block;
     color: rgba(0, 0, 0, 0.5);
 }
 
-div#body {
+textarea#body {
     height: 50vh;
     width: 90vw;
+}
+
+textarea#body:empty:before {
+    content: "Тело поста...";
+    display: block;
+    color: rgba(0, 0, 0, 0.5);
 }
 </style>
 
 
 <script>
+
+function getCaretPosition(editableDiv) {
+    var caretPos = 0,
+        sel, range;
+
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            if (range.commonAncestorContainer.parentNode == editableDiv) {
+                caretPos = range.endOffset;
+            }
+        }
+    } else if (document.selection && document.selection.createRange) {
+        range = document.selection.createRange();
+        if (range.parentElement() == editableDiv) {
+            var tempEl = document.createElement("span");
+            editableDiv.insertBefore(tempEl, editableDiv.firstChild);
+            var tempRange = range.duplicate();
+            tempRange.moveToElementText(tempEl);
+            tempRange.setEndPoint("EndToEnd", range);
+            caretPos = tempRange.text.length;
+        }
+    }
+    return caretPos;
+}
+
 $(document).ready(function() {
     $(window).keydown(function(event) {
+        //console.log(event);
         if (event.key === 's' && event.ctrlKey) {
             event.stopPropagation();
             event.preventDefault();
-            window.localStorage['post-title'] = $("#title").text();
-            window.localStorage['post-body'] = $("#body").html();
+            window.localStorage['post-title'] = $("#title").val();
+            window.localStorage['post-body'] = $("#body").val();
             return false;
         }
 
@@ -48,14 +82,15 @@ $(document).ready(function() {
             console.log(window.localStorage);
             return false;
         }
+        return true;
     });
 
     var date = new Date();
     $("#time-cnt").html(date);
 
     if(window.localStorage.length > 0) {
-        $("#title").text(window.localStorage['post-title']);
-        $("#body").html(window.localStorage['post-body']);
+        $("#title").val(window.localStorage['post-title']);
+        $("#body").val(window.localStorage['post-body']);
     }
 });
 
@@ -64,13 +99,12 @@ $(document).ready(function() {
 <a href="..">Назад</a>
 
 <div style="display: flex;">
-    <div contenteditable="true" id="title" class="editable"></div>
+    <input form="sendPost" contenteditable="true" id="title" class="editable" name="postTitle"></input>
     <div>
         <div id="time-cnt"></div>
-        <a href="/submit">Опубликовать</a>
+        <button form="sendPost" type="submit">Опубликовать</a>
     </div>
 </div>
-<div id="body" class="editable">
-    <p contenteditable="true">А здесь тело поста...</p>
-    <p contenteditable="true">...из двух параграфов</p>
-</div>
+<textarea id="body" class="editable" form="sendPost" name="postBody"></textarea>
+
+<form id="sendPost" action="" method="post"></form>
