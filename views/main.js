@@ -48,7 +48,7 @@ exports.get_event = (req, res, next) => {
 }
 
 exports.get_event_list = (req, res, next) => {
-    db.get_column_as_list('events', 'name', (result) => {
+    db.getEventsForList((result) => {
         if (result == undefined) {
             res.send('smth went wrong');
         }

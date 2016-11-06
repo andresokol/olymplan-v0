@@ -32,6 +32,39 @@ exports.getById = function(table, id, callback, arr_to_concat = []) {
             });
 };
 
+
+/**
+ * Gets specified columns
+ *
+ * @param {string} table name
+ * @param {object} columns names
+ * @param {function} callback
+ */
+var getColumns = (table, columns, callback) => {
+    var qstring = "SELECT ";
+    for (let index in columns) {
+        qstring += columns[index] + ",";
+    }
+    qstring = qstring.slice(0, -1) + " FROM " + table + ";";
+
+    run_request(qstring).then((result) => {
+        callback(result);
+    });
+};
+
+
+/**
+ * Gets list of events for event_list.ejs
+ *
+ * @param {function} callback
+ */
+exports.getEventsForList = (callback) => {
+    var columns = ['id', 'name', 'lvl', 'grade_range', 'subject_en'];
+
+    getColumns(tables.event_list, columns, callback);
+};
+
+
 exports.get_column_as_list = (table, column_name, callback) => {
     var qstring = "SELECT id, " + column_name + " FROM " + table + ";"
     run_request(qstring).then(
