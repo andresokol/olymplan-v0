@@ -39,13 +39,22 @@ exports.getById = function(table, id, callback, arr_to_concat = []) {
  * @param {string} table name
  * @param {object} columns names
  * @param {function} callback
+ * @param {string} field to order by
+ * @param {boolean} order descending
  */
-var getColumns = (table, columns, callback) => {
+var getColumns = (table, columns, callback, order_field = undefined, order_descending = false) => {
     var qstring = "SELECT ";
     for (let index in columns) {
         qstring += columns[index] + ",";
     }
-    qstring = qstring.slice(0, -1) + " FROM " + table + ";";
+    qstring = qstring.slice(0, -1) + " FROM " + table;
+
+    if (order_field) {
+        qstring += " ORDER BY " + order_field;
+        if (order_descending) qstring += " DESC";
+    }
+
+    qstring += ";";
 
     run_request(qstring).then((result) => {
         callback(result);
@@ -59,9 +68,9 @@ var getColumns = (table, columns, callback) => {
  * @param {function} callback
  */
 exports.getEventsForList = (callback) => {
-    var columns = ['id', 'name', 'lvl', 'grade_range', 'subject_en'];
+    var columns = ['id', 'name', 'lvl', 'grade_range', 'subject_en', 'metaevent'];
 
-    getColumns(tables.event_list, columns, callback);
+    getColumns(tables.event_list, columns, callback, 'metaevent');
 };
 
 
