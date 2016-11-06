@@ -221,6 +221,38 @@ var addRowToTable = (table_name, data, take_care_of_index, callback) => {
 
 
 /**
+ * Updates row in the table
+ *
+ * @param {string} table name
+ * @param {string} field to get exact row
+ * @param {*} field entity
+ * @param {object} data to update
+ * @param {function} callback
+ */
+var updateRowInTable = (table, field_name, field_value, data, callback) => {
+    var qstring = "UPDATE " + table + " SET ";
+    for (let key in data) {
+        qstring += key + " = ";
+        if (typeof(data[key]) === typeof("string")) qstring += "'";
+        qstring += data[key];
+        if (typeof(data[key]) === typeof("string")) qstring += "'";
+        qstring += ", ";
+    }
+    qstring = qstring.slice(0, -2) + " WHERE " + field_name + " = ";
+    if (typeof(field_value) === typeof("string")) qstring += "'";
+    qstring += field_value;
+    if (typeof(field_value) === typeof("string")) qstring += "'";
+    qstring += ";";
+
+    run_request(qstring).then(() => {
+        callback();
+    }).catch((err) => {
+        callback(err);
+    });
+}
+
+
+/**
  * Adds new post
  *
  * @param {string} title
@@ -239,4 +271,22 @@ exports.addNewPostToDB = (title, body, author, callback) => {
     addRowToTable(tables.blog, data, true, (err) => {
         callback(err);
     });
+};
+
+
+/**
+ * Adds post modification to DB
+ *
+ * @param {int} post id
+ * @param {string} title
+ * @param {string} body
+ * @param {function} callback
+ */
+exports.updatePost = (id, title, body, callback) => {
+    var data = {
+        'title': title,
+        'body': body
+    };
+
+    updateRowInTable(tables.blog, 'id', id, data, callback);
 };

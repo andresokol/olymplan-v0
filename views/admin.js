@@ -56,7 +56,6 @@ exports.blogSubmitNewPost = (req, res) => {
         body = utils.sanitizeQuotes(req.body.postBody),
         author = utils.sanitizeQuotes(req.session.username);
 
-    body = body.replace('')
     db.addNewPostToDB(title, body, author, (err) => {
         if (err) {
             res.send('Wow, something went wrong');
@@ -68,5 +67,15 @@ exports.blogSubmitNewPost = (req, res) => {
 };
 
 exports.blogSubmitModifiedPost = (req, res) => {
-    res.send(JSON.stringify(req.body.title));
+    var title = utils.sanitizeQuotes(req.body.postTitle),
+        body = utils.sanitizeQuotes(req.body.postBody),
+        id = req.params.id;
+
+    db.updatePost(id, title, body, (err) => {
+        if (err) {
+            res.send('Oops =(<br><hr><br>' + JSON.stringify(err));
+            return;
+        }
+        res.redirect('/admin');
+    });
 };
