@@ -27,8 +27,7 @@ module.exports = function(app) {
     app.get("/admin/", admin_views.main);
 
     // Debug features
-    //app.get('/test', mail_views.show_message_input);
-    //app.post('/test', mail_views.send_message);
+    app.get('/test/ui', (req, res) => {res.render('ui-test');});
 
     app.get('/test/api', (req, res) => {
         res.send('{"Math": ["Math1", "Math2"], "PE": ["PE1", "PE2"]}');
