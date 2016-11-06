@@ -53,7 +53,14 @@ $(document).ready(function() {
     <input type="checkbox" name="subject" value="math" checked>математика
 </div>
 <div class="list">
+<% var old_metaevent = "" %>
 <% for (var i in event_list) { %>
+    <% if (old_metaevent != event_list[i].metaevent) { %>
+        <!-- // if came across with new metaevent - creating new h2-tag -->
+        <!-- // FIXME: hide metaevent name when no events match filter -->
+        <h2><%= event_list[i].metaevent %></h2>
+        <% old_metaevent = event_list[i].metaevent %>
+    <% } %>
     <a href="/events/<%= event_list[i].id %>" style="display:block;" class="-js-subject-<%= event_list[i].subject_en %>"><%= event_list[i].name %></a>
 <% } %>
 </div>
