@@ -332,3 +332,14 @@ exports.updatePost = (id, title, body, callback) => {
 
     updateRowInTable(tables.blog, 'id', id, data, callback);
 };
+
+
+/**
+ * Gets list of blog posts
+ *
+ * @param {function} callback
+ */
+exports.getBlogPosts = (callback) => {
+    var columns = ['id', 'title', 'body', 'author', 'created'];
+    getColumns(tables.blog, columns, callback, 'id', true);
+};

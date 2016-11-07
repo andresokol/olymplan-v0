@@ -2,12 +2,16 @@ var db = require('../middleware/db'),
     utils = require('../middleware/utils'),
     tables = require('../db_tables_config.json');
 
-exports.landing_page = function (req, res) {
-    res.render('landing', {
-        hostname: req.hostname,
-        data: JSON.stringify(req.route)
+exports.landing_page = (req, res) => {
+    db.getBlogPosts((result) => {
+
+        res.render('landing', {
+            hostname: req.hostname,
+            data: JSON.stringify(req.route),
+            blog_posts: result
+        });
     });
-}
+};
 
 exports.university = function(req, res) {
     db.getById("universities", req.params.id, (result) => {
