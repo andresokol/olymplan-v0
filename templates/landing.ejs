@@ -33,12 +33,12 @@
                     </p>
                 </div>
                 <div class="btn-wrap">
-                    <a href="/register">
+                    <a href="/user/register">
                         <div class="btn__material btn__material__orange -material-shadow" class="register">
                             Зарегистрироваться
                         </div>
                     </a>
-                    <a href="/timetable_trial">
+                    <a href="/user/timetable_trial">
                         <div class="btn__material" class="timetable">
                             Составить свое расписание!
                         </div>
@@ -63,6 +63,19 @@
                 </div>
             </div>
         </div>
+
+        <!-- BLOG CONTAINER -->
+        <div class="blog_cnt">
+            <% for (var i in blog_posts) { %>
+                <div class="blog_post">
+                    <a href="/blog/<%= blog_posts[i].id %>">
+                        <h1><%= blog_posts[i].title %></h1>
+                    </a>
+                    <p style="color: black;"><%= blog_posts[i].body %></p>
+                </div>
+            <% } %>
+        </div>
+
       </div>
     <div class="footer">
         <ul>

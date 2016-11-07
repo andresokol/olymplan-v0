@@ -29,9 +29,39 @@
 <div class="header">
   <h1>Все олимпиады</h1>
 </div>
+
+<!-- @FIXME: move to separate file -->
+<style>
+.-is-hidden {
+    display: none!important;
+}
+</style>
+<script>
+$(document).ready(function() {
+    $("input[name=subject]").change(function(event) {
+        var class_to_modify = ".-js-subject-" + $(this).val();
+        console.log(class_to_modify);
+        $(class_to_modify).toggleClass("-is-hidden");
+        console.log($(class_to_modify));
+    });
+});
+</script>
+<!--                               -->
+
+<div class="filter_bar">
+    <input type="checkbox" name="subject" value="physics" checked>физика
+    <input type="checkbox" name="subject" value="math" checked>математика
+</div>
 <div class="list">
+<% var old_metaevent = "" %>
 <% for (var i in event_list) { %>
-    <a href="/events/<%= event_list[i].id %>" style="display:block;"><%= event_list[i].name %></a>
+    <% if (old_metaevent != event_list[i].metaevent) { %>
+        <!-- // if came across with new metaevent - creating new h2-tag -->
+        <!-- // FIXME: hide metaevent name when no events match filter -->
+        <h2><%= event_list[i].metaevent %></h2>
+        <% old_metaevent = event_list[i].metaevent %>
+    <% } %>
+    <a href="/events/<%= event_list[i].id %>" style="display:block;" class="-js-subject-<%= event_list[i].subject_en %>"><%= event_list[i].name %></a>
 <% } %>
 </div>
 </div>
