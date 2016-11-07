@@ -1,5 +1,6 @@
 const db = require('../middleware/db'),
     tables = require('../db_tables_config.json'),
+    utils = require('../middleware/utils'),
     crypto = require('crypto'),
     kek = console.log;
 
@@ -36,5 +37,45 @@ exports.main = (req, res) => {
                 //код, который парсит JSON
             });
         });
+    });
+};
+
+
+exports.blogEditPost = (req, res) => {
+    res.render("admin/blog_editor");
+};
+
+
+exports.blogNewPost = (req, res) => {
+    res.render("admin/blog_editor");
+};
+
+
+exports.blogSubmitNewPost = (req, res) => {
+    var title = utils.sanitizeQuotes(req.body.postTitle),
+        body = utils.sanitizeQuotes(req.body.postBody),
+        author = utils.sanitizeQuotes(req.session.username);
+
+    db.addNewPostToDB(title, body, author, (err) => {
+        if (err) {
+            res.send('Wow, something went wrong');
+            return;
+        }
+
+        res.redirect("/admin");
+    });
+};
+
+exports.blogSubmitModifiedPost = (req, res) => {
+    var title = utils.sanitizeQuotes(req.body.postTitle),
+        body = utils.sanitizeQuotes(req.body.postBody),
+        id = req.params.id;
+
+    db.updatePost(id, title, body, (err) => {
+        if (err) {
+            res.send('Oops =(<br><hr><br>' + JSON.stringify(err));
+            return;
+        }
+        res.redirect('/admin');
     });
 };

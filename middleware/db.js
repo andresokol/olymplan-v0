@@ -15,6 +15,8 @@ var run_request = function(qstring) {
         pool.query(qstring, function (err, result) {
             //console.log('db.js:20', result);
             if(err) {
+                console.log("DB request:");
+                console.log(qstring);
                 console.log(JSON.stringify(err));
                 reject(err);
             }
@@ -229,4 +231,104 @@ exports.getUserData = (username) => {
         var qstring = "SELECT * FROM " + tables.user_list + " WHERE username = '" + username + "';";
         run_request(qstring).then(resolve).catch(reject);
     });
+};
+
+/**
+ * Adds row to table
+ *
+ * @param {String} table name
+ * @param {object} data to add
+ * @param {boolean} take care of index
+ * @param {function} callback
+ */
+var addRowToTable = (table_name, data, take_care_of_index, callback) => {
+    var qstring = "INSERT INTO " + table_name + " values(";
+
+    if (take_care_of_index) qstring += "(SELECT MAX(id) + 1 FROM " + table_name + "),";
+
+    for(let index in data) {
+        if (typeof(data[index]) !== typeof(10)) qstring += "'"; // random int inside brackets
+        qstring += data[index];
+        if (typeof(data[index]) !== typeof(10)) qstring += "'"; // random int inside brackets
+        qstring += ",";
+    }
+    qstring = qstring.slice(0, -1) + ");"
+
+    run_request(qstring).then((result) => {
+        callback();
+    }).catch((err) => {
+        callback(err);
+    });
+};
+
+
+/**
+ * Updates row in the table
+ *
+ * @param {string} table name
+ * @param {string} field to get exact row
+ * @param {*} field entity
+ * @param {object} data to update
+ * @param {function} callback
+ */
+var updateRowInTable = (table, field_name, field_value, data, callback) => {
+    var qstring = "UPDATE " + table + " SET ";
+    for (let key in data) {
+        qstring += key + " = ";
+        if (typeof(data[key]) === typeof("string")) qstring += "'";
+        qstring += data[key];
+        if (typeof(data[key]) === typeof("string")) qstring += "'";
+        qstring += ", ";
+    }
+    qstring = qstring.slice(0, -2) + " WHERE " + field_name + " = ";
+    if (typeof(field_value) === typeof("string")) qstring += "'";
+    qstring += field_value;
+    if (typeof(field_value) === typeof("string")) qstring += "'";
+    qstring += ";";
+
+    run_request(qstring).then(() => {
+        callback();
+    }).catch((err) => {
+        callback(err);
+    });
+}
+
+
+/**
+ * Adds new post
+ *
+ * @param {string} title
+ * @param {string} post body
+ * @param {string} author username
+ * @param {function} callback
+ */
+exports.addNewPostToDB = (title, body, author, callback) => {
+    var data = {
+                    'title': title,
+                    'body': body,
+                    'author': author,
+                    'created': (new Date()).toString()
+                };
+
+    addRowToTable(tables.blog, data, true, (err) => {
+        callback(err);
+    });
+};
+
+
+/**
+ * Adds post modification to DB
+ *
+ * @param {int} post id
+ * @param {string} title
+ * @param {string} body
+ * @param {function} callback
+ */
+exports.updatePost = (id, title, body, callback) => {
+    var data = {
+        'title': title,
+        'body': body
+    };
+
+    updateRowInTable(tables.blog, 'id', id, data, callback);
 };
