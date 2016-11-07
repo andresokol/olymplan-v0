@@ -63,3 +63,7 @@ exports.get_event_list = (req, res, next) => {
         }
     });
 }
+
+exports.ShowAboutPage = (req, res, next) => {
+    res.render('about.ejs');
+}

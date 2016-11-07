@@ -2,7 +2,6 @@ var main_views = require("../views/main"),
     admin_views = require("../views/admin"),
     user_views = require("../views/user"),
     api_views = require("../views/api"),
-    about_views = require("../views/about"),
     utils = require('../middleware/utils'),
     blog_views = require('../views/blog');
 
@@ -23,6 +22,9 @@ module.exports = function(app) {
     // Blog
     app.get('/blog/', blog_views.blogList);
     app.get('/blog/:postId', blog_views.blogPost);
+
+    // About
+    app.get('/about', main_views.ShowAboutPage);
 
     // API + AJAX
     app.post("/api/login", api_views.validate_login);
