@@ -2,6 +2,7 @@ var main_views = require("../views/main"),
     admin_views = require("../views/admin"),
     user_views = require("../views/user"),
     api_views = require("../views/api"),
+    about_views = require("../views/about"),
     utils = require('../middleware/utils');
 
 module.exports = function(app) {
